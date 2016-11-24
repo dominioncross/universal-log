@@ -1,13 +1,24 @@
 /*global React*/
 /*global ReactDOM*/
+/*global Faye*/
 /*global $*/
 /*global _*/
 var MessageList = React.createClass({
   getInitialState: function(){
-    return({message: null, messages: [], loading: false, pastProps: null});
+    return({fayeListener: null, message: null, messages: [], loading: false, pastProps: null});
   },
   init: function(){
     this.loadMessages();
+  },
+  componentDidMount: function(){
+    var faye = new Faye.Client(this.props.fayeServer);
+    faye.subscribe(`/chat/${this.props.scopeId}/new`, this.receiveFaye);  
+    console.log(`Listening on FAYE channel: '/chat/${this.props.scopeId}/new'`);
+  },
+  receiveFaye: function(e){
+    if (e.channel==this.props.gs.channel){
+      this.init();
+    }
   },
   componentDidUpdate: function(){
     if (this.state.pastProps != JSON.stringify(this.props) && !this.state.loading){
@@ -62,18 +73,20 @@ var MessageList = React.createClass({
   },
   _submitForm: function(e){
     e.preventDefault();
-    console.log(this.state.message);
-    var textarea = ReactDOM.findDOMNode(this.refs.textarea);
-    var _this=this;
-    $.ajax({
-      type: 'POST',
-      url: '/chat/messages',
-      data: {message: {message: this.state.message}, channel: this.props.gs.channel},
-      success: function(data){
-        textarea.value='';
-        textarea.focus();
-        _this.setState({messages: data});
-      }
-    });
+    if (this.state.message && !this.state.loading){
+      var textarea = ReactDOM.findDOMNode(this.refs.textarea);
+      var _this=this;
+      this.setState({loading: true});
+      $.ajax({
+        type: 'POST',
+        url: '/chat/messages',
+        data: {message: {message: this.state.message}, channel: this.props.gs.channel},
+        success: function(data){
+          textarea.value='';
+          textarea.focus();
+          _this.setState({messages: data, message: null, loading: false});
+        }
+      });
+    }
   }
 })

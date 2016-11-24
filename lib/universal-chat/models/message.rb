@@ -43,7 +43,7 @@ module UniversalChat
             kind: self.kind,
             token: self.token,
             channel: self.channel_name,
-            created: self.created_at.strftime('%b %d, %Y - %I:%M%p')
+            created: self.created_at.strftime('%b %d, %Y - %-I:%M%p')
           }
         end
         

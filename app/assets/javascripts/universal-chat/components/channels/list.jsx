@@ -19,13 +19,14 @@ var ChannelList = React.createClass({
       var _clickChannel = this._clickChannel;
       _.each(this.props.gs.channels, function(channel){
         h.push(<li key={channel.name}>
-          <span className="label label-info" 
+          <a
+            href="#"
             onClick={_clickChannel} 
             data-id={channel.name}
-            style={{cursor: 'pointer'}}>{channel.name}</span>
+            style={{cursor: 'pointer'}}>{channel.name}</a>
         </li>);
       });
-      return(<ul className="list-unstyled">{h}</ul>);
+      return(<ul className="nav nav-pills">{h}</ul>);
     }else{
       return(null);
     }
