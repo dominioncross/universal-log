@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require react
+//= require react_ujs
+//= require bootstrap-sprockets
+//= require_tree ./components
+//= require_tree ./components/channels
+//= require_tree ./components/messages
+//= require ./underscore
+//= require_tree .
