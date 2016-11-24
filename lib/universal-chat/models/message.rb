@@ -9,10 +9,8 @@ module UniversalChat
         include Mongoid::Timestamps::Created
         include Mongoid::Search
         include Universal::Concerns::Status
-        include Universal::Concerns::Kind
         include Universal::Concerns::Taggable
         include Universal::Concerns::Scoped
-        include Universal::Concerns::Tokened
         
         store_in session: UniversalChat::Configuration.mongoid_session_name, collection: 'chat_messages'
     
@@ -40,8 +38,6 @@ module UniversalChat
             author: self.author,
             message: self.message,
             status: self.status,
-            kind: self.kind,
-            token: self.token,
             channel: self.channel_name,
             created: self.created_at.strftime('%b %d, %Y - %-I:%M%p')
           }
