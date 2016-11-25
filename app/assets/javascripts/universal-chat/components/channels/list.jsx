@@ -54,5 +54,6 @@ var ChannelList = React.createClass({
   },
   selectChannel: function(channel){
     this.props.sgs('channel', channel);
+    this.props.sgs('keyword', null);
   }
 })

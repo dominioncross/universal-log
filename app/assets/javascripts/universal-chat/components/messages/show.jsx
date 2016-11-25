@@ -17,7 +17,7 @@ var Message = React.createClass({
     if (this.props.gs && this.props.gs.channel && this.props.gs.keyword){
       return(
         <div className="text-warning" style={{marginRight: '10px'}}>
-          <i className="fa fa-hashtag" />{this.props.gs.channel}
+          <i className="fa fa-hashtag" />{this.props.message.channel}
         </div>
         );
     }else{
