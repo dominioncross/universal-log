@@ -19,6 +19,7 @@ gem 'kaminari', '0.16.1'
 gem 'universal', github: 'bthree/universal'
 gem 'carrierwave', '0.10.0'
 gem 'carrierwave-mongoid', '0.1.0', require: 'carrierwave/mongoid'
+gem 'rails_autolink'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

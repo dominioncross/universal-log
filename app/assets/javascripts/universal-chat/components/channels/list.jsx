@@ -8,10 +8,15 @@ var ChannelList = React.createClass({
   },
   componentDidMount: function(){
     this.loadChannels();
-    this.selectChannel('public')
+    this.selectChannel('general')
   },
   render: function(){
-    return(<div>{this.channels()}</div>);
+    return(
+      <nav>
+        <h5 className="sidebar-header">Channels</h5>
+        {this.channels()}
+      </nav>
+    );
   },
   channels: function(){
     if (this.props.gs && this.props.gs.channels){
@@ -26,7 +31,7 @@ var ChannelList = React.createClass({
             style={{cursor: 'pointer'}}>{channel.name}</a>
         </li>);
       });
-      return(<ul className="nav nav-pills">{h}</ul>);
+      return(<ul className="nav nav-pills nav-stacked">{h}</ul>);
     }else{
       return(null);
     }

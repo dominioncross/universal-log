@@ -14,19 +14,28 @@ var Chat = React.createClass({
   },
   render: function(){
     return(
-      <div>
-        <div className="row">
-          <div className="col-sm-12">
-            <ChannelList gs={this.state.gs} sgs={this.setGlobalState}/>
+      <section id="main-wrapper" className="theme-blue-full">
+        <header id="header">
+          <div className="brand">
+            <a href="/chat" className="logo">
+              <i className="fa fa-comments" /> <span>Universal</span> Chat
+            </a>
           </div>
-          <div className="col-sm-12">
-            <h2>#{this.state.gs.channel}</h2>
+        </header>
+        <aside className="sidebar sidebar-left">
+          <ChannelList gs={this.state.gs} sgs={this.setGlobalState}/>
+        </aside>
+        <section className="main-content-wrapper">
+          <div className="pageheader">
+            <h1>#{this.state.gs.channel}</h1>
+          </div>
+          <section id="main-content">
             <MessageList gs={this.state.gs} sgs={this.setGlobalState} fayeServer={this.props.faye_server} scopeId={this.props.scope_id} />
-          </div>
-        </div>
+          </section>
+        </section>
         <hr />
         {/*<small>{JSON.stringify(this.state.gs)}</small>*/}
-      </div>
+      </section>
     );
   },
 });

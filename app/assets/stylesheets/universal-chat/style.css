@@ -1,0 +1,17 @@
+.panel{box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);}
+small{font-size:0.7em;}
+.m-0{margin:0;}
+.list-group-item-text{font-size:0.7em;}
+.small{font-size:0.7em;}
+.panel .actions{position:inherit;margin-top:-18px;}
+@media (max-width: 768px){
+  h1{font-size:1em;}
+  h4{font-size:0.8em;}
+}
+.alert-sm{font-size:0.8em;padding:8px;}
+blockquote, .post>p{font-size:10pt;}
+.post>p{margin-bottom:0}
+.chat-widget span {font-size: 0.8em;}
+.btn-xs{margin-bottom:0;}
+.sidebar .nav > li > .nav-sub > li > a {padding-left: 30px;}
+nav.pageheader>h1{margin:0}

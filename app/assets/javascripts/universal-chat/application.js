@@ -3,8 +3,12 @@
 //= require react
 //= require react_ujs
 //= require bootstrap-sprockets
+//= require ./jquery-ui.min
+//= require ./jquery.nogoco.min
+//= require ./switchery.min
+//= require ./pace.min
 //= require_tree ./components
-//= require_tree ./components/channels
-//= require_tree ./components/messages
 //= require ./underscore
+//= require ./backbone
+//= require ./messenger
 //= require_tree .
