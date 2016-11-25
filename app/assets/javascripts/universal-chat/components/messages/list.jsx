@@ -32,21 +32,20 @@ var MessageList = React.createClass({
     return(
       <div>
         {this.messageForm()}
-        <ul className="list-group" ref="messageList">
-          {this.messages()}
-        </ul>
+        {this.messages()}
       </div>
     );
   },
   messages: function(){
-    if (this.state.messages){
+    if (this.state.messages.length>0){
       var h = [];
+      var gs=this.props.gs;
       _.each(this.state.messages, function(message){
-        h.push(<li key={message.id} className="list-group-item"><Message message={message} insertMessage={this.insertMessage} /></li>);
+        h.push(<li key={message.id} className="list-group-item"><Message message={message} insertMessage={this.insertMessage} gs={gs} /></li>);
       });
-      return(h);
+      return(<ul className="list-group" ref="messageList">{h}</ul>);
     }else{
-      return(null);
+      return(<div className="alert alert-info">No messages to list...</div>);
     }
   },
   loadMessages: function(){
@@ -56,9 +55,10 @@ var MessageList = React.createClass({
       $.ajax({
         type: 'GET',
         url: '/chat/messages.json',
-        data: {channel: this.props.gs.channel},
+        data: {channel: this.props.gs.channel, keyword: this.props.gs.keyword},
         success: function(data){
           _this.setState({messages: data, loading: false, pastProps: JSON.stringify(_this.props)});
+          /*_this.props.sgs('searching', false);*/
         }
       });
     }

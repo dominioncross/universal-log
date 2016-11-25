@@ -31,7 +31,18 @@ module UniversalChat
       def find_messages
         @messages = UniversalChat::Message.all
         @messages = @messages.scoped_to(universal_scope) if !universal_scope.nil?
-        @messages = @messages.where(channel_name: params[:channel]) if !params[:channel].blank?
+        if !params[:keyword].blank?
+          keywords = params[:keyword].split(' ')
+          conditions = []
+          keywords.each do |keyword|
+            if !keyword.blank?
+              conditions.push({'$or' => [{message: /\b#{keyword}/i}, {author: /\b#{keyword}/i}]})
+            end
+          end
+          @messages = @messages.where('$and' => conditions)
+        else
+          @messages = @messages.where(channel_name: params[:channel]) if !params[:channel].blank?
+        end
       end
     
   end

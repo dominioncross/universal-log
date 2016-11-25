@@ -19,13 +19,7 @@ var Chat = React.createClass({
   render: function(){
     return(
       <section id="main-wrapper" className="theme-blue-full">
-        <header id="header">
-          <div className="brand">
-            <a href="/chat" className="logo">
-              <i className="fa fa-comments" /> <span>Universal</span> Chat
-            </a>
-          </div>
-        </header>
+        <Header gs={this.state.gs} sgs={this.setGlobalState} />
         <aside className="sidebar sidebar-left">
           <ChannelList gs={this.state.gs} sgs={this.setGlobalState}/>
         </aside>
