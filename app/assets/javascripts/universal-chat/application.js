@@ -6,7 +6,6 @@
 //= require ./jquery-ui.min
 //= require ./jquery.nogoco.min
 //= require ./switchery.min
-//= require ./pace.min
 //= require_tree ./components
 //= require ./underscore
 //= require ./backbone
