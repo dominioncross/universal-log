@@ -18,6 +18,8 @@ module UniversalChat
     kinds %w(public private), :private
     statuses %w(active locked archived), default: :active
     
+    default_scope ->(){order_by(name: :asc)}
+    
     has_many :messages, class_name: 'UniversalChat::Message'
     
     validates :scope, :name, presence: true

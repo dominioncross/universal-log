@@ -1,11 +1,15 @@
 /*global React*/
-/*global Faye*/
 var Chat = React.createClass({
   
   getInitialState: function(){
     return({
       gs: {} //global state
     });
+  },
+  componentDidMount: function(){
+    if (this.props.channel){
+      this.setGlobalState('channel', this.props.channel);
+    }
   },
   setGlobalState: function(key, value){
     var globalState = this.state.gs;
@@ -31,10 +35,10 @@ var Chat = React.createClass({
           </div>
           <section id="main-content">
             <MessageList gs={this.state.gs} sgs={this.setGlobalState} fayeServer={this.props.faye_server} scopeId={this.props.scope_id} />
+            <hr />
+            {/*<small>{JSON.stringify(this.state.gs)}</small>*/}
           </section>
         </section>
-        <hr />
-        {/*<small>{JSON.stringify(this.state.gs)}</small>*/}
       </section>
     );
   },

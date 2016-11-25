@@ -8,7 +8,9 @@ var ChannelList = React.createClass({
   },
   componentDidMount: function(){
     this.loadChannels();
-    this.selectChannel('general')
+    if (!this.props.gs.channel){
+      this.selectChannel('general');
+    }
   },
   render: function(){
     return(
@@ -25,10 +27,11 @@ var ChannelList = React.createClass({
       _.each(this.props.gs.channels, function(channel){
         h.push(<li key={channel.name}>
           <a
-            href="#"
             onClick={_clickChannel} 
             data-id={channel.name}
-            style={{cursor: 'pointer'}}>{channel.name}</a>
+            style={{cursor: 'pointer'}}>
+            <i className="fa fa-hashtag" 
+            data-id={channel.name}/>{channel.name}</a>
         </li>);
       });
       return(<ul className="nav nav-pills nav-stacked">{h}</ul>);

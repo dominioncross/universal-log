@@ -4,4 +4,6 @@ UniversalChat::Engine.routes.draw do
   resources :channels
   resources :messages
   
+  get ':channel', to: 'home#index', as: :channel_path
+  
 end
