@@ -12,8 +12,8 @@ var MessageList = React.createClass({
   },
   componentDidMount: function(){
     var faye = new Faye.Client(this.props.fayeServer);
-    faye.subscribe(`/chat/${this.props.scopeId}/new`, this.receiveFaye);  
-    console.log(`Listening on FAYE channel: '/chat/${this.props.scopeId}/new'`);
+    faye.subscribe(`/log/${this.props.scopeId}/new`, this.receiveFaye);  
+    console.log(`Listening on FAYE channel: '/log/${this.props.scopeId}/new'`);
   },
   receiveFaye: function(e){
     if (e.channel==this.props.gs.channel){
@@ -54,7 +54,7 @@ var MessageList = React.createClass({
       var _this=this;
       $.ajax({
         type: 'GET',
-        url: '/chat/messages.json',
+        url: '/log/messages.json',
         data: {channel: this.props.gs.channel, keyword: this.props.gs.keyword},
         success: function(data){
           _this.setState({messages: data, loading: false, pastProps: JSON.stringify(_this.props)});
@@ -79,7 +79,7 @@ var MessageList = React.createClass({
       this.setState({loading: true});
       $.ajax({
         type: 'POST',
-        url: '/chat/messages',
+        url: '/log/messages',
         data: {message: {message: this.state.message}, channel: this.props.gs.channel},
         success: function(data){
           textarea.value='';

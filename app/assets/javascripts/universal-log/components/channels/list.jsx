@@ -43,7 +43,7 @@ var ChannelList = React.createClass({
     var _this=this;
     $.ajax({
       type: 'GET',
-      url: '/chat/channels.json',
+      url: '/log/channels.json',
       success: function(data){
         _this.props.sgs('channels', data);
       }

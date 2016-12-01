@@ -1,5 +1,6 @@
 /*global React*/
-var Chat = React.createClass({
+/*global $*/
+var LogBook = React.createClass({
   
   getInitialState: function(){
     return({
@@ -10,6 +11,17 @@ var Chat = React.createClass({
     if (this.props.channel){
       this.setGlobalState('channel', this.props.channel);
     }
+    var _this = this;
+    $.ajax({
+      method: 'GET',
+      url: `/log/init.json`,
+      success: (function(data){
+        document.title = data.config.system_name;
+        _this.setGlobalState('config', data.config);
+        _this.setGlobalState('user', data.universal_user);
+        _this.setGlobalState('users', data.users);
+      })
+    });
   },
   setGlobalState: function(key, value){
     var globalState = this.state.gs;
@@ -36,4 +48,11 @@ var Chat = React.createClass({
       </section>
     );
   },
+  checkAccess: function(){
+    if (can(this.state.gs, 'create_channels')){
+      return('YES!');
+    }else{
+      return('No :(');
+    }
+  }
 });

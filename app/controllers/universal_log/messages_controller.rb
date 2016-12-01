@@ -1,4 +1,4 @@
-require_dependency "universal_chat/application_controller"
+require_dependency "universal_log/application_controller"
 
 module UniversalLog
   class MessagesController < ApplicationController
@@ -17,7 +17,7 @@ module UniversalLog
         @message.author = universal_user.name
       end
       if @message.save
-        Blare.post("/chat/#{universal_scope.id.to_s}/new", {channel: current_channel, author: @message.author})
+        Blare.post("/log/#{universal_scope.id.to_s}/new", {channel: current_channel, author: @message.author})
       end
       find_messages
       render json: @messages.map{|c| c.to_json}

@@ -9,8 +9,8 @@ var Header = React.createClass({
     return(
       <header id="header">
         <div className="brand">
-          <a href="/chat" className="logo">
-            <i className="fa fa-comments" /> <span>Universal</span> Chat
+          <a href="/log" className="logo">
+            <i className="fa fa-comments" /> {(this.props.gs==null || this.props.gs.config==null || this.props.gs.config.system_name == null) ? 'Logbook' : this.props.gs.config.system_name}
           </a>
         </div>
         <ul className="nav navbar-nav navbar-left">

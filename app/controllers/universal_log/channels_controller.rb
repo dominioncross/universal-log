@@ -1,4 +1,4 @@
-require_dependency "universal_chat/application_controller"
+require_dependency "universal_log/application_controller"
 
 module UniversalLog
   class ChannelsController < ApplicationController
