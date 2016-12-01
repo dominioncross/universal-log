@@ -1,4 +1,4 @@
-module UniversalChat
+module UniversalLog
   class Channel
 
     include Mongoid::Document
@@ -11,7 +11,7 @@ module UniversalChat
     include Universal::Concerns::Tokened
     
     
-    store_in session: UniversalChat::Configuration.mongoid_session_name, collection: 'chat_channels'
+    store_in session: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_channels'
 
     field :n, as: :name
     
@@ -20,7 +20,7 @@ module UniversalChat
     
     default_scope ->(){order_by(name: :asc)}
     
-    has_many :messages, class_name: 'UniversalChat::Message'
+    has_many :messages, class_name: 'UniversalLog::Message'
     
     validates :scope, :name, presence: true
     

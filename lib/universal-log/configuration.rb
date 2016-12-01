@@ -1,4 +1,4 @@
-module UniversalChat
+module UniversalLog
   class Configuration
 
     cattr_accessor :scope_class, :mongoid_session_name, :faye_server
@@ -11,4 +11,4 @@ module UniversalChat
 
   end
 end
-UniversalChat::Configuration.reset
+UniversalLog::Configuration.reset

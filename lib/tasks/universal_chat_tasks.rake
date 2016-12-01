@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :universal-chat do
+# task :universal-log do
 #   # Task goes here
 # end

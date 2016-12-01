@@ -1,6 +1,6 @@
 require_dependency "universal_chat/application_controller"
 
-module UniversalChat
+module UniversalLog
   class HomeController < ApplicationController
     
     def index

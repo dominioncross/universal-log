@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount UniversalChat::Engine => "/universal-chat"
+  mount UniversalLog::Engine => "/universal-log"
 end

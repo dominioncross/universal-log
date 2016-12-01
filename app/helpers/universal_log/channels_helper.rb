@@ -1,4 +1,4 @@
-module UniversalChat
+module UniversalLog
   module ChannelsHelper
   end
 end

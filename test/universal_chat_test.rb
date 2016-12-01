@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class UniversalChatTest < ActiveSupport::TestCase
+class UniversalLogTest < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, UniversalChat
+    assert_kind_of Module, UniversalLog
   end
 end

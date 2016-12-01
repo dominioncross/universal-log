@@ -1,2 +1,2 @@
-# universal-chat
+# universal-log
 Chat log

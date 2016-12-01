@@ -1,6 +1,6 @@
 require_dependency "universal_chat/application_controller"
 
-module UniversalChat
+module UniversalLog
   class MessagesController < ApplicationController
     
     def index
@@ -9,7 +9,7 @@ module UniversalChat
     end
     
     def create
-      @message = UniversalChat::Message.new params[:message]
+      @message = UniversalLog::Message.new params[:message]
       @message.scope = universal_scope if !universal_scope.nil?
       @message.channel = current_channel
       if !universal_user.nil?
@@ -25,7 +25,7 @@ module UniversalChat
     
     private
       def find_messages
-        @messages = UniversalChat::Message.all
+        @messages = UniversalLog::Message.all
         @messages = @messages.scoped_to(universal_scope) if !universal_scope.nil?
         if !params[:keyword].blank?
           keywords = params[:keyword].split(' ')
