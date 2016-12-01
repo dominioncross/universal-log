@@ -10,6 +10,7 @@ module UniversalLog
         include Mongoid::Search
         include Universal::Concerns::Status
         include Universal::Concerns::Taggable
+        include Universal::Concerns::Flaggable
         include Universal::Concerns::Scoped
         include Universal::Concerns::Polymorphic #A model that this message is related to
         
@@ -21,6 +22,7 @@ module UniversalLog
         field :cn, as: :channel
         
         statuses %w(active closed deleted), default: :active
+        flags %w(pinned)
         
         validates :scope, :channel, :message, presence: true
     
@@ -41,6 +43,7 @@ module UniversalLog
             status: self.status,
             channel: self.channel,
             subject_name: self.subject_name,
+            flags: self.flags,
             created: self.created_at.strftime('%b %d, %Y - %-I:%M%p')
           }
         end

@@ -29,6 +29,21 @@ module UniversalLog
       render json: {}
     end
     
+    def flag
+      @message = UniversalLog::Message.find(params[:id])
+      f = params[:flag].sanitize
+      if !@message.nil?
+        if @message.flagged_with?(f)
+          @message.remove_flag!(f)
+        else
+          @message.flag!(f, universal_user)
+        end
+        render json: {flags: @message.flags}
+      else
+        render json: {flags: []}
+      end
+    end
+    
     private
       def find_messages
         @messages = UniversalLog::Message.active

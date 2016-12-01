@@ -7,7 +7,11 @@ UniversalLog::Engine.routes.draw do
   resource :config, controller: :config
   
   resources :channels
-  resources :messages
+  resources :messages do
+    member do
+      patch :flag
+    end
+  end
   
   get ':channel', to: 'home#index', as: :channel_path
   

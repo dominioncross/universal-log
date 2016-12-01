@@ -93,7 +93,7 @@ var MessageList = React.createClass({
     if (this.state.message){
       return 100;
     }else{
-      return 35;
+      return 40;
     }
   },
   submitButton: function(){

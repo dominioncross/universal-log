@@ -1,11 +1,13 @@
 /*global React*/
-/*global Autolinker */
+/*global Autolinker*/
+/*global $*/
+/*global can*/
 var Message = React.createClass({
   getInitialState: function(){
-    return({message: null});
+    return({message: null, flags: []});
   },
   componentDidMount: function(){
-    this.setState({message: this.props.message});
+    this.setState({message: this.props.message, flags: this.props.message.flags});
   },
   render: function(){
     if (this.state.message){
@@ -16,6 +18,7 @@ var Message = React.createClass({
               {this.state.message.created}
               {this.deleteMessage()}
             </div>
+            {this.pinMessage()}
             <span className="text-info small">{this.state.message.author}</span>
             {this.channel()}
             {this.subject()}
@@ -43,6 +46,39 @@ var Message = React.createClass({
       return(<div className="small">{this.state.message.subject_name}: </div>);
     }else{
       return null;
+    }
+  },
+  pinned: function(){
+    return(this.state.flags.indexOf('pinned')>-1);
+  },
+  pinIcon: function(){
+    if (this.pinned()){
+      return("fa fa-thumb-tack text-warning");
+    }else{
+      return("fa fa-thumb-tack");
+    }
+  },
+  pinMessage: function(){
+    if (can(this.props.gs, 'pin_messages')){
+      return(<span style={{marginRight: '10px'}}><i className={this.pinIcon()} onClick={this._pinMessage} style={{cursor: 'pointer'}}/></span>);
+    }else if (this.pinned()){
+      return(<span style={{marginRight: '10px'}}><i className={this.pinIcon()} /></span>);
+    }else{
+      return null;
+    }
+  },
+  _pinMessage: function(){
+    if (can(this.props.gs, 'pin_messages')){
+      var _this=this;
+      $.ajax({
+        type: 'PATCH',
+        url: `/log/messages/${this.state.message.id}/flag`,
+        data: {flag: 'pinned'},
+        success: function(data){
+          console.log(data);
+          _this.setState({flags: data.flags});
+        }
+      }); 
     }
   },
   deleteMessage: function(){
