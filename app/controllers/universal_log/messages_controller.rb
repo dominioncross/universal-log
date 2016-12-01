@@ -23,9 +23,15 @@ module UniversalLog
       render json: @messages.map{|c| c.to_json}
     end
     
+    def destroy
+      @message = UniversalLog::Message.find(params[:id])
+      @message.deleted!
+      render json: {}
+    end
+    
     private
       def find_messages
-        @messages = UniversalLog::Message.all
+        @messages = UniversalLog::Message.active
         @messages = @messages.scoped_to(universal_scope) if !universal_scope.nil?
         if !params[:keyword].blank?
           keywords = params[:keyword].split(' ')

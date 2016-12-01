@@ -3,6 +3,9 @@
 /*global $*/
 /*global _*/
 var NewMessage = React.createClass({
+  getInitialState: function(){
+    return({});
+  },
   render: function(){
     return(
       <div>

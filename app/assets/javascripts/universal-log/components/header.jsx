@@ -8,11 +8,7 @@ var Header = React.createClass({
   render: function(){
     return(
       <header id="header">
-        <div className="brand">
-          <a href="/log" className="logo">
-            <i className="fa fa-comments" /> {(this.props.gs==null || this.props.gs.config==null || this.props.gs.config.system_name == null) ? 'Logbook' : this.props.gs.config.system_name}
-          </a>
-        </div>
+        <BrandLogo system_name={this.props.gs.config ? this.props.gs.config.system_name : null} />
         <ul className="nav navbar-nav navbar-left">
           <li className="toggle-navigation toggle-left">
               <button className="sidebar-toggle" id="toggle-left">

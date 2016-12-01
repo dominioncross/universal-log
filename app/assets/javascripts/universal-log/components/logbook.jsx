@@ -30,7 +30,7 @@ var LogBook = React.createClass({
   },
   render: function(){
     return(
-      <section id="main-wrapper" className="theme-blue-full">
+      <section id="main-wrapper" className="theme-green">
         <Header gs={this.state.gs} sgs={this.setGlobalState} />
         <aside className="sidebar sidebar-left">
           <ChannelList gs={this.state.gs} sgs={this.setGlobalState}/>

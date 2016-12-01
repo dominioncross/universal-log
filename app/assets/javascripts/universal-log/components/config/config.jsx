@@ -24,7 +24,7 @@ var Config = React.createClass({
   render: function(){
     return(
       <div>
-        <header><BrandLogo system_name={this.props.config ? this.props.config.system_name : null} /></header>
+        <header><BrandLogo system_name={this.state.config ? this.state.config.system_name : null} /></header>
         <div className="panel panel-primary" id="locked-screen">
           <div className="panel-heading">
             <h3 className="panel-title">Config</h3>

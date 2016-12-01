@@ -41,7 +41,7 @@ var MessageList = React.createClass({
       var h = [];
       var gs=this.props.gs;
       _.each(this.state.messages, function(message){
-        h.push(<li key={message.id} className="list-group-item"><Message message={message} insertMessage={this.insertMessage} gs={gs} /></li>);
+        h.push(<Message message={message} insertMessage={this.insertMessage} gs={gs} key={message.id} />);
       });
       return(<ul className="list-group" ref="messageList">{h}</ul>);
     }else{
@@ -66,8 +66,8 @@ var MessageList = React.createClass({
   messageForm: function(){
     return(<div>
       <form onSubmit={this._submitForm}>
-        <div className="form-group"><textarea onChange={this._changeMessage} className="form-control" ref="textarea"/></div>
-        <div className="form-group"><button className="btn btn-primary">Post</button></div>
+        <div className="form-group"><textarea onChange={this._changeMessage} className="form-control" ref="textarea" placeholder="New message..." style={{height: `${this.textAreaHeight()}px`}} /></div>
+        {this.submitButton()}
       </form>
     </div>);
   },
@@ -87,6 +87,20 @@ var MessageList = React.createClass({
           _this.setState({messages: data, message: null, loading: false});
         }
       });
+    }
+  },
+  textAreaHeight: function(){
+    if (this.state.message){
+      return 100;
+    }else{
+      return 35;
+    }
+  },
+  submitButton: function(){
+    if (this.state.message){
+      return(<div className="form-group"><button className="btn btn-primary"><i className="fa fa-send" /> Post</button></div>);
+    }else{
+      return(null);
     }
   }
 })

@@ -20,7 +20,7 @@ module UniversalLog
         field :sn, as: :subject_name
         field :cn, as: :channel
         
-        statuses %w(active closed), default: :active
+        statuses %w(active closed deleted), default: :active
         
         validates :scope, :channel, :message, presence: true
     
