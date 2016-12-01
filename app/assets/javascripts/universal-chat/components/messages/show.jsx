@@ -8,6 +8,7 @@ var Message = React.createClass({
           <div className="pull-right small text-muted">{this.props.message.created}</div>
           <span className="text-info small">{this.props.message.author}</span>
           {this.channel()}
+          {this.subject()}
           <div dangerouslySetInnerHTML={{__html: Autolinker.link(this.props.message.message.replace(/(?:\r\n|\r|\n)/g, '<br />'))}} />
         </div>
       </div>
@@ -22,6 +23,13 @@ var Message = React.createClass({
         );
     }else{
       return(null);
+    }
+  },
+  subject: function(){
+    if (this.props.message.subject_name){
+      return(<div className="small">{this.props.message.subject_name}: </div>);
+    }else{
+      return null;
     }
   }
 });

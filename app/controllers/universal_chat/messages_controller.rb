@@ -9,19 +9,15 @@ module UniversalChat
     end
     
     def create
-      @channels = UniversalChat::Channel.all
-      @channels = @channels.scoped_to(universal_scope) if !universal_scope.nil?
-      @channel = @channels.where(name: params[:channel]).first
-      @channel ||= UniversalChat::Channel.create scope: universal_scope, name: params[:channel]
-      
-      @message = @channel.messages.new params[:message]
+      @message = UniversalChat::Message.new params[:message]
       @message.scope = universal_scope if !universal_scope.nil?
+      @message.channel = current_channel
       if !universal_user.nil?
         @message.user = universal_user 
         @message.author = universal_user.name
       end
       if @message.save
-        Blare.post("/chat/#{universal_scope.id.to_s}/new", {channel: params[:channel], author: @message.author})
+        Blare.post("/chat/#{universal_scope.id.to_s}/new", {channel: current_channel, author: @message.author})
       end
       find_messages
       render json: @messages.map{|c| c.to_json}
@@ -36,12 +32,17 @@ module UniversalChat
           conditions = []
           keywords.each do |keyword|
             if !keyword.blank?
-              conditions.push({'$or' => [{message: /\b#{keyword}/i}, {author: /\b#{keyword}/i}]})
+              conditions.push({'$or' => [
+                {message: /\b#{keyword}/i}, 
+                {author: /\b#{keyword}/i},
+                {channel: /\b#{keyword}\b/i},
+                {subject_name: /\b#{keyword}\b/i}
+              ]})
             end
           end
           @messages = @messages.where('$and' => conditions)
         else
-          @messages = @messages.where(channel_name: params[:channel]) if !params[:channel].blank?
+          @messages = @messages.where(channel: current_channel) if !current_channel.blank?
         end
       end
     

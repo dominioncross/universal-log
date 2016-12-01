@@ -11,19 +11,20 @@ module UniversalChat
         include Universal::Concerns::Status
         include Universal::Concerns::Taggable
         include Universal::Concerns::Scoped
+        include Universal::Concerns::Polymorphic #A model that this message is related to
         
         store_in session: UniversalChat::Configuration.mongoid_session_name, collection: 'chat_messages'
     
         field :a, as: :author
         field :m, as: :message
-        field :cn, as: :channel_name
-        
-        belongs_to :channel, class_name: 'UniversalChat::Channel'
+        field :sn, as: :subject_name
+        field :cn, as: :channel
         
         statuses %w(active closed), default: :active
         
-        validates :scope, :channel, :author, :message, presence: true
-        
+        validates :scope, :channel, :message, presence: true
+    
+        scope :for_channel, ->(channel){where(channel: channel)}    
         default_scope ->(){order_by(created_at: :desc)}
         
         before_save :update_relations
@@ -38,16 +39,21 @@ module UniversalChat
             author: self.author,
             message: self.message,
             status: self.status,
-            channel: self.channel_name,
+            channel: self.channel,
+            subject_name: self.subject_name,
             created: self.created_at.strftime('%b %d, %Y - %-I:%M%p')
           }
         end
         
         private
           def update_relations
-            self.channel_name = self.channel.name if self.channel_name.blank?
+            if self.author.blank? and !Universal::Configuration.class_name_user.blank? and !self.user_id.blank? and !self.user.nil?
+              self.author = self.user.name
+            end
+            if !self.subject_id.blank? and !self.subject.nil?
+              self.subject_name = self.subject.chat_subject_name
+            end
           end
-        
       end
     end
   end
