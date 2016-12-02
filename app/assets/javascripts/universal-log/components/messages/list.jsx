@@ -5,7 +5,15 @@
 /*global _*/
 var MessageList = React.createClass({
   getInitialState: function(){
-    return({fayeListener: null, message: null, messageLines: 0, messages: [], loading: false, pastProps: null});
+    return({
+      fayeListener: null,
+      message: null,
+      messageLines: 0,
+      messages: [],
+      loading: false,
+      pastProps: null,
+      pageNum: null
+    });
   },
   init: function(){
     this.loadMessages();
@@ -33,6 +41,12 @@ var MessageList = React.createClass({
       <div>
         {this.messageForm()}
         {this.messages()}
+        <Pagination
+          pagination={this.state.pagination}
+          currentPage={this.state.pageNum}
+          pageResults={this.pageResults}
+          displayDescription={true}
+          />
       </div>
     );
   },
@@ -48,20 +62,30 @@ var MessageList = React.createClass({
       return(<div className="alert alert-info">No messages to list...</div>);
     }
   },
-  loadMessages: function(){
+  loadMessages: function(page){
     if (!this.state.loading){
+      if (page==undefined){page=1;}
       this.setState({loading: true});
       var _this=this;
       $.ajax({
         type: 'GET',
-        url: '/log/messages.json',
+        url: `/log/messages.json?page=${page}`,
         data: {channel: this.props.gs.channel, keyword: this.props.gs.keyword},
         success: function(data){
-          _this.setState({messages: data, loading: false, pastProps: JSON.stringify(_this.props)});
+          console.log(data.pagination);
+          _this.setState({
+            messages: data.messages,
+            pagination: data.pagination,
+            loading: false,
+            pastProps: JSON.stringify(_this.props)
+          });
           /*_this.props.sgs('searching', false);*/
         }
       });
     }
+  },
+  pageResults: function(page){
+    this.loadMessages(page);
   },
   messageForm: function(){
     return(<div>

@@ -5,7 +5,8 @@ module UniversalLog
     
     def index
       find_messages
-      render json: @messages.map{|c| c.to_json}
+      
+      render json: messages_json
     end
     
     def create
@@ -20,7 +21,7 @@ module UniversalLog
         Blare.post("/log/#{universal_scope.id.to_s}/new", {channel: current_channel, author: @message.author})
       end
       find_messages
-      render json: @messages.map{|c| c.to_json}
+      render json: messages_json
     end
     
     def destroy
@@ -58,5 +59,19 @@ module UniversalLog
         end
       end
     
+      def messages_json
+        per=10
+        @messages = @messages.page(params[:page]).per(10)
+        return {
+          pagination: {
+            total_count: @messages.total_count,
+            page_count: @messages.total_pages,
+            current_page: params[:page].to_i,
+            per_page: per
+          },
+          messages: @messages.map{|t| t.to_json}
+        }
+      end
+      
   end
 end
