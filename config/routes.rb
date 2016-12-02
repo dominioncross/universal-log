@@ -9,7 +9,7 @@ UniversalLog::Engine.routes.draw do
   resources :channels
   resources :messages do
     member do
-      patch :flag
+      patch :pin
     end
   end
   

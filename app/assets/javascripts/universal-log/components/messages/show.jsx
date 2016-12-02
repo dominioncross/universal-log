@@ -4,22 +4,22 @@
 /*global can*/
 var Message = React.createClass({
   getInitialState: function(){
-    return({message: null, flags: []});
+    return({message: null});
   },
   componentDidMount: function(){
-    this.setState({message: this.props.message, flags: this.props.message.flags});
+    this.setState({message: this.props.message});
   },
   render: function(){
     if (this.state.message){
       return(
         <li className="list-group-item">
           <div className="no-margin">
-            <div className="pull-right small text-muted">
+            <div className="pull-right text-muted">
               {this.state.message.created}
+              {this.pinMessage()}
               {this.deleteMessage()}
             </div>
-            {this.pinMessage()}
-            <span className="text-info small">{this.state.message.author}</span>
+            <span className="text-info">{this.state.message.author}</span>
             {this.channel()}
             {this.subject()}
             <div dangerouslySetInnerHTML={{__html: Autolinker.link(this.state.message.message.replace(/(?:\r\n|\r|\n)/g, '<br />'))}} />
@@ -49,20 +49,20 @@ var Message = React.createClass({
     }
   },
   pinned: function(){
-    return(this.state.flags.indexOf('pinned')>-1);
+    return(this.state.message.pinned);
   },
   pinIcon: function(){
     if (this.pinned()){
-      return("fa fa-thumb-tack text-warning");
+      return("fa fa-thumb-tack text-danger");
     }else{
       return("fa fa-thumb-tack");
     }
   },
   pinMessage: function(){
     if (can(this.props.gs, 'pin_messages')){
-      return(<span style={{marginRight: '10px'}}><i className={this.pinIcon()} onClick={this._pinMessage} style={{cursor: 'pointer'}}/></span>);
+      return(<span style={{marginLeft: '10px'}}><i className={this.pinIcon()} onClick={this._pinMessage} style={{cursor: 'pointer'}}/></span>);
     }else if (this.pinned()){
-      return(<span style={{marginRight: '10px'}}><i className={this.pinIcon()} /></span>);
+      return(<span style={{marginLeft: '10px'}}><i className={this.pinIcon()} /></span>);
     }else{
       return null;
     }
@@ -72,11 +72,9 @@ var Message = React.createClass({
       var _this=this;
       $.ajax({
         type: 'PATCH',
-        url: `/log/messages/${this.state.message.id}/flag`,
-        data: {flag: 'pinned'},
+        url: `/log/messages/${this.state.message.id}/pin`,
         success: function(data){
-          console.log(data);
-          _this.setState({flags: data.flags});
+          _this.setState({message: data});
         }
       }); 
     }
