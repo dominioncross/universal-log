@@ -5,7 +5,7 @@
 /*global _*/
 var MessageList = React.createClass({
   getInitialState: function(){
-    return({fayeListener: null, message: null, messages: [], loading: false, pastProps: null});
+    return({fayeListener: null, message: null, messageLines: 0, messages: [], loading: false, pastProps: null});
   },
   init: function(){
     this.loadMessages();
@@ -26,7 +26,7 @@ var MessageList = React.createClass({
     }
   },
   _changeMessage: function(e){
-    this.setState({message: e.target.value});
+    this.setState({message: e.target.value, messageLines: e.target.value.split(/\r\n|\r|\n/).length});
   },
   render: function(){
     return(
@@ -91,14 +91,25 @@ var MessageList = React.createClass({
   },
   textAreaHeight: function(){
     if (this.state.message){
-      return 100;
+      var newHeight = 40 + (this.state.messageLines-1)*20;
+      if (newHeight>240){
+        newHeight=240;
+      }
+      return newHeight
     }else{
       return 40;
     }
   },
+  postIcon: function(){
+    if (this.state.loading){
+      return("fa fa-fw fa-refresh fa-spin");
+    }else{
+      return("fa fa-fw fa-send");
+    }
+  },
   submitButton: function(){
     if (this.state.message){
-      return(<div className="form-group"><button className="btn btn-primary"><i className="fa fa-send" /> Post</button></div>);
+      return(<div className="form-group"><button className="btn btn-primary"><i className={this.postIcon()} /> Post</button></div>);
     }else{
       return(null);
     }

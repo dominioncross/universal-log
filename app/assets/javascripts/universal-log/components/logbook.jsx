@@ -1,4 +1,5 @@
 /*global React*/
+/*global ReactDOM*/
 /*global $*/
 var LogBook = React.createClass({
   
@@ -37,7 +38,11 @@ var LogBook = React.createClass({
         </aside>
         <section className="main-content-wrapper">
           <div className="pageheader">
-            <h1>#{this.state.gs.channel}</h1>
+            {this.editChannelButton()}
+            <h1>
+              #{this.state.gs.channel}
+            </h1>
+            {this.channelNotes()}
           </div>
           <section id="main-content">
             <MessageList gs={this.state.gs} sgs={this.setGlobalState} fayeServer={this.props.faye_server} scopeId={this.props.scope_id} />
@@ -45,14 +50,26 @@ var LogBook = React.createClass({
             {/*<small>{JSON.stringify(this.state.gs)}</small>*/}
           </section>
         </section>
+        <Modal ref='edit_channel_modal' modalTitle={`Edit #${this.state.gs.channel}`} modalContent={<EditChannel gs={this.state.gs} />} />
       </section>
     );
   },
-  checkAccess: function(){
-    if (can(this.state.gs, 'create_channels')){
-      return('YES!');
+  editChannelButton: function(){
+    if (can(this.state.gs, 'edit_channels')){
+      return(<div className="pull-right"><i className="fa fa-fw fa-pencil small" onClick={this.displayEditChannel} style={{cursor: 'pointer'}} /></div>);
+    }
+  },
+  displayEditChannel: function(){
+    var modal = ReactDOM.findDOMNode(this.refs.edit_channel_modal);
+    if (modal){
+      $(modal).modal('show', {backdrop: 'static'});
+    }
+  },
+  channelNotes: function(){
+    if (this.state.gs.channel_notes){
+      return(<div className="small text-info">{this.state.gs.channel_notes}</div>);
     }else{
-      return('No :(');
+      return(null);
     }
   }
 });

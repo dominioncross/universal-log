@@ -14,6 +14,7 @@ module UniversalLog
     store_in session: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_channels'
 
     field :n, as: :name
+    field :no, as: :notes
     
     kinds %w(public private), :private
     statuses %w(active locked archived), default: :active
@@ -27,6 +28,7 @@ module UniversalLog
     def to_json
       {
         name: self.name,
+        notes: self.notes,
         status: self.status,
         kind: self.kind,
         token: self.token,

@@ -29,6 +29,7 @@ var ChannelList = React.createClass({
           <a
             onClick={_clickChannel} 
             data-id={channel.name}
+            data-notes={channel.notes}
             style={{cursor: 'pointer'}}>
             <i className="fa fa-hashtag" 
             data-id={channel.name}/>{channel.name}</a>
@@ -50,10 +51,11 @@ var ChannelList = React.createClass({
     });
   },
   _clickChannel: function(e){
-    this.selectChannel($(e.target).attr('data-id'));
+    this.selectChannel($(e.target).attr('data-id'), $(e.target).attr('data-notes'));
   },
-  selectChannel: function(channel){
+  selectChannel: function(channel, notes){
     this.props.sgs('channel', channel);
+    this.props.sgs('channel_notes', notes);
     this.props.sgs('keyword', null);
   }
 })
