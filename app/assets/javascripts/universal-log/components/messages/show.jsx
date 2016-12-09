@@ -28,7 +28,7 @@ var Message = React.createClass({
               subject_id={this.props.message.id}
               newCommentPosition='bottom'
               openComments={true}
-              newCommentPlaceholder='Comment...'
+              newCommentPlaceholder='New comment...'
               fullWidth={false}
               />
           </div>

@@ -6,11 +6,10 @@ var NewComment = React.createClass({
     return({
       loading: false,
       content: '',
-      allowEmail: false
+      focused: false
     });
   },
   componentDidMount: function(){
-    this.setState({allowEmail: this.props.allowEmail});
   },
   valid: function(){
     return (this.state.content != '');
@@ -18,27 +17,14 @@ var NewComment = React.createClass({
   handleChange: function(e){
     this.setState({content: e.target.value});
   },
-  submitEmail: function(e){
-    e.preventDefault();
-    if (confirm('Are you sure you want to EMAIL this reply to the customer?')){
-      this.handleSubmit(true); 
-    }
-  },
   submitNote: function(e){
     e.preventDefault();
-    if (this.state.allowEmail){
-      if (confirm('This note will NOT be emailed to the customer')){
-        this.handleSubmit(false);
-      }
-    }else{
-      this.handleSubmit(false);
-    }  
+    this.handleSubmit(false);
   },
   handleSubmit: function(sendAsEmail){
     var _this=this;
     if (!this.state.loading){
       this.setState({loading: true});
-      var emailKind = (sendAsEmail ? 'email' : 'normal');
       $.ajax({
         method: 'POST',
         url: '/universal/comments',
@@ -47,61 +33,43 @@ var NewComment = React.createClass({
           subject_type: this.props.subject_type,
           subject_id: this.props.subject_id,
           content: this.state.content,
-          kind: emailKind,
+          kind: 'normal',
           hide_private_comments: this.props.hidePrivateComments
         },
         success: function(data){
-          _this.setState({content: '', focused: false, loading: false});
+          _this.setState({content: '', loading: false});
           _this.props.updateCommentList(data);
           ReactDOM.findDOMNode(_this.refs.content).value='';
-          showSuccess("Comments saved");
+          ReactDOM.findDOMNode(_this.refs.content).blur();
         }
       });
     }
   },
   render: function(){
     return(
-      <div>
-        <div className="form-group" style={{marginBottom: '5px'}}>
-          <textarea 
-            className="form-control small" 
-            ref='content' 
-            placeholder={this.props.newCommentPlaceholder} 
-            onChange={this.handleChange} 
-            style={this.textareaStyle()} />
+      <div className="chat-widget">
+        <div className="row wrapper animated fadeInRight">
+          <div className="col-sm-2">
+          </div>
+          <div className="col-sm-10">
+            <div className="post system_generated" style={this.focusStyle()}>
+              <span className="arrow left"></span>
+              <form onSubmit={this.submitNote}>
+                <input 
+                  className="form-control small text-info"
+                  ref='content'
+                  placeholder={this.props.newCommentPlaceholder}
+                  onChange={this.handleChange}
+                  onFocus={this.setFocus}
+                  onBlur={this.setFocus}
+                  style={{padding:0, borderWidth: 0, backgroundColor: 'inherit', height: 20}}
+                  />
+              </form>
+            </div>
+          </div>
         </div>
-        <ul className="list-inline">
-          {this.sendAsEmailButton()}
-          {this.saveAsNoteButton()}
-        </ul>
-      </div>
+        </div>
     );
-  },
-  sendAsEmailButton: function(){
-    if (this.valid() && this.state.allowEmail){
-      return(
-        <li>
-          <button className={this.buttonClass('email')} onClick={this.submitEmail}>
-            <i className={this.loadingIcon('send')} /> Send email
-          </button>
-        </li>
-      );
-    }else{
-      return(null);
-    }    
-  },
-  saveAsNoteButton: function(){
-    if (this.valid()){
-      return(
-        <li>
-          <button className={this.buttonClass('note')} onClick={this.submitNote}>
-            Post <i className={this.loadingIcon('chevron-right')} />
-          </button>
-        </li>
-      );
-    }else{
-      return(null);
-    }
   },
   loadingIcon: function(send_icon){
     if (this.state.loading){
@@ -110,18 +78,12 @@ var NewComment = React.createClass({
       return(`fa fa-${send_icon}`);
     }
   },
-  buttonClass: function(type){
-    if (type=='email'){
-      return("btn btn-primary");
-    }else if (type=='note'){
-      return("btn btn-default btn-sm");
-    }      
+  setFocus: function(){
+    this.setState({focused: !this.state.focused});
   },
-  textareaStyle: function(){
-    if (this.state.content){
-      return({minHeight: '60px'});
-    }else{
-      return({height: '34px', backgroundColor: '#fafafa'});
+  focusStyle: function(){
+    if (this.state.focused){
+      return({backgroundColor: '#FFF'});
     }
-  },
+  }
 });

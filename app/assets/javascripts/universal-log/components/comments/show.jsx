@@ -36,7 +36,7 @@ var Comment = React.createClass({
           </div>
           <div className={this.column(10)}>
             <div className={commentClass}>
-              <div className="pull-right small">{this.props.comment.when_formatted}</div>
+              <div className="pull-right small"><small>{this.props.comment.when_formatted}</small></div>
               {this.arrow()}
               <p>{nl2br(this.props.comment.content)}</p>
             </div>
@@ -79,7 +79,7 @@ var Comment = React.createClass({
       return(
         <div>
           <span>{this.props.comment.author}</span>
-          <div className="small">{timeago}</div>
+          <div className="small"><small>{timeago}</small></div>
         </div>
       );
     }
