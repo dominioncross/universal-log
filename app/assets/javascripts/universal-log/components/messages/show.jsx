@@ -22,7 +22,15 @@ var Message = React.createClass({
             <span className="text-info">{this.state.message.author}</span>
             {this.channel()}
             {this.subject()}
-            <div dangerouslySetInnerHTML={{__html: Autolinker.link(this.state.message.message.replace(/(?:\r\n|\r|\n)/g, '<br />'))}} />
+            <div style={{marginBottom: '10px'}} dangerouslySetInnerHTML={{__html: Autolinker.link(this.state.message.message.replace(/(?:\r\n|\r|\n)/g, '<br />'))}} />
+            <Comments 
+              subject_type='UniversalLog::Message'
+              subject_id={this.props.message.id}
+              newCommentPosition='bottom'
+              openComments={true}
+              newCommentPlaceholder='Comment...'
+              fullWidth={false}
+              />
           </div>
         </li>
       );

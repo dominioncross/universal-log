@@ -11,6 +11,7 @@ module UniversalLog
         include Universal::Concerns::Status
         include Universal::Concerns::Taggable
         include Universal::Concerns::Scoped
+        include Universal::Concerns::Commentable
         include Universal::Concerns::Polymorphic #A model that this message is related to
         
         store_in session: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_messages'

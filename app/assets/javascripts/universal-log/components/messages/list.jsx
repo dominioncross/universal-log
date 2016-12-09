@@ -16,7 +16,6 @@ var MessageList = React.createClass({
     });
   },
   init: function(){
-    this.setState({pageNum: null});
     this.loadMessages();
   },
   componentDidMount: function(){
@@ -30,6 +29,7 @@ var MessageList = React.createClass({
   },
   componentDidUpdate: function(){
     if (this.state.pastProps != JSON.stringify(this.props) && !this.state.loading){
+      this.setState({pageNum: null});
       this.init();
     }
   },
@@ -59,7 +59,7 @@ var MessageList = React.createClass({
       });
       return(<ul className="list-group" ref="messageList">{h}</ul>);
     }else{
-      return(<div className="alert alert-info">No messages to list...</div>);
+      return(<div className="alert alert-info">Nothing to see here...</div>);
     }
   },
   loadMessages: function(page){
@@ -91,7 +91,7 @@ var MessageList = React.createClass({
   messageForm: function(){
     return(<div>
       <form onSubmit={this._submitForm}>
-        <div className="form-group"><textarea onChange={this._changeMessage} className="form-control" ref="textarea" placeholder="New message..." style={{height: `${this.textAreaHeight()}px`}} /></div>
+        <div className="form-group"><textarea onChange={this._changeMessage} className="form-control" ref="textarea" placeholder="New log..." style={{height: `${this.textAreaHeight()}px`}} /></div>
         {this.submitButton()}
       </form>
     </div>);
