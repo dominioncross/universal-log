@@ -61,7 +61,8 @@ module UniversalLog
     
       def messages_json
         per=10
-        @messages = @messages.page(params[:page]).per(10)
+        params[:page] = 1 if params[:page].blank?
+        @messages = @messages.page(params[:page]).per(per)
         return {
           pagination: {
             total_count: @messages.total_count,

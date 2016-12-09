@@ -15,7 +15,7 @@ var Message = React.createClass({
         <li className="list-group-item">
           <div className="no-margin">
             <div className="pull-right text-muted">
-              {this.state.message.created}
+              <small>{this.state.message.created}</small>
               {this.pinMessage()}
               {this.deleteMessage()}
             </div>

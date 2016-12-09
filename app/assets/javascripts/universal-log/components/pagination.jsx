@@ -22,7 +22,7 @@ var Pagination = React.createClass({
         </div>
       );
     }else{
-      return(<div>nope</div>);
+      return(null);
     }
   },
   paginationRequired: function(){
@@ -73,4 +73,3 @@ var Pagination = React.createClass({
     }
   }      
 });
-  

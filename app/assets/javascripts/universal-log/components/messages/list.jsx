@@ -16,12 +16,12 @@ var MessageList = React.createClass({
     });
   },
   init: function(){
+    this.setState({pageNum: null});
     this.loadMessages();
   },
   componentDidMount: function(){
     var faye = new Faye.Client(this.props.fayeServer);
-    faye.subscribe(`/log/${this.props.scopeId}/new`, this.receiveFaye);  
-    console.log(`Listening on FAYE channel: '/log/${this.props.scopeId}/new'`);
+    faye.subscribe(`/log/${this.props.scopeId}/new`, this.receiveFaye);
   },
   receiveFaye: function(e){
     if (e.channel==this.props.gs.channel){
@@ -72,12 +72,12 @@ var MessageList = React.createClass({
         url: `/log/messages.json?page=${page}`,
         data: {channel: this.props.gs.channel, keyword: this.props.gs.keyword},
         success: function(data){
-          console.log(data.pagination);
           _this.setState({
             messages: data.messages,
             pagination: data.pagination,
             loading: false,
-            pastProps: JSON.stringify(_this.props)
+            pastProps: JSON.stringify(_this.props),
+            pageNum: page
           });
           /*_this.props.sgs('searching', false);*/
         }
@@ -86,6 +86,7 @@ var MessageList = React.createClass({
   },
   pageResults: function(page){
     this.loadMessages(page);
+    this.setState({pageNum: page});
   },
   messageForm: function(){
     return(<div>
@@ -108,7 +109,14 @@ var MessageList = React.createClass({
         success: function(data){
           textarea.value='';
           textarea.focus();
-          _this.setState({messages: data, message: null, loading: false});
+          _this.setState({
+            messages: data.messages,
+            pagination: data.pagination,
+            loading: false,
+            message: null,
+            pastProps: JSON.stringify(_this.props),
+            pageNum: 1
+          });
         }
       });
     }
