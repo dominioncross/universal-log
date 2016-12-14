@@ -21,6 +21,7 @@ var ChannelList = React.createClass({
     );
   },
   channels: function(){
+    var messageCount =this.messageCount;
     if (this.props.gs && this.props.gs.channels){
       var h = [];
       var _clickChannel = this._clickChannel;
@@ -31,6 +32,7 @@ var ChannelList = React.createClass({
             data-id={channel.name}
             data-notes={channel.notes}
             style={{cursor: 'pointer'}}>
+            {messageCount(channel.message_count)}
             <i className="fa fa-hashtag" 
             data-id={channel.name}/>{channel.name}</a>
         </li>);
@@ -38,6 +40,11 @@ var ChannelList = React.createClass({
       return(<ul className="nav nav-pills nav-stacked">{h}</ul>);
     }else{
       return(null);
+    }
+  },
+  messageCount: function(c){
+    if (c>0){
+      return(<span className="pull-right label label-primary label-circle">{c}</span>)
     }
   },
   loadChannels: function(){

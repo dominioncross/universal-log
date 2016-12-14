@@ -21,9 +21,11 @@ module UniversalLog
     
     default_scope ->(){order_by(name: :asc)}
     
-    has_many :messages, class_name: 'UniversalLog::Message'
-    
     validates :scope, :name, presence: true
+    
+    def messages
+      ::UniversalLog::Message.where(scope: self.scope, channel: self.name)
+    end
     
     def to_json
       {
