@@ -11,7 +11,7 @@ module UniversalLog
     end
     
     def update
-      p = params.require(:config).permit(:system_name, :url, :google_api_key)
+      p = params.require(:config).permit(:system_name, :url, :google_api_key, :sms_url, :sms_source, :sms_username, :sms_password)
       universal_log_config.update(p)
       render json: universal_log_config.to_json
     end

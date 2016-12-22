@@ -10,6 +10,10 @@ module UniversalLog
     field :url
     field :hp, as: :hashed_password
     field :gak, as: :google_api_key
+    field :su, as: :sms_url
+    field :ss, as: :sms_source
+    field :sus, as: :sms_username
+    field :sp, as: :sms_password
     
     def to_json
       {
@@ -18,7 +22,11 @@ module UniversalLog
         url: self.url,
         token: self.token,
         hashed_password: self.hashed_password,
-        google_api_key: self.google_api_key
+        google_api_key: self.google_api_key,
+        sms_url: self.sms_url,
+        sms_source: self.sms_source,
+        sms_username: self.sms_username,
+        sms_password: self.sms_password
       }
     end
       

@@ -16,7 +16,7 @@ module UniversalLog
           id: u.id.to_s, 
           functions: (u.universal_user_group_functions.blank? ? [] : u.universal_user_group_functions['lobgook'])}}
       
-      json = {config: universal_log_config, users: users}
+      json = {config: universal_log_config, users: users, subscriber: current_subscriber.to_json}
 
       if universal_user
         json.merge!({universal_user: {

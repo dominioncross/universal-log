@@ -97,7 +97,11 @@ var Config = React.createClass({
       data:{
         config: {
           system_name: ReactDOM.findDOMNode(refs.system_name).value,
-          url: ReactDOM.findDOMNode(refs.url).value
+          url: ReactDOM.findDOMNode(refs.url).value,
+          sms_url: ReactDOM.findDOMNode(refs.sms_url).value,
+          sms_source: ReactDOM.findDOMNode(refs.sms_source).value,
+          sms_username: ReactDOM.findDOMNode(refs.sms_username).value,
+          sms_password: ReactDOM.findDOMNode(refs.sms_password).value
         }
       },
       success: (function(_this){

@@ -25,6 +25,22 @@ var ConfigForm = React.createClass({
           <input type="text" className="form-control" defaultValue={this.props.config.google_api_key} id="google_api_key" ref="google_api_key" />
         </div>
         <div className="form-group">
+          <label htmlFor="sms_url">SMS Broadcast URL (optional)</label>
+          <input type="text" className="form-control" defaultValue={this.props.config.sms_url} id="sms_url" ref="sms_url" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="sms_source">SMS Broadcast Source (optional)</label>
+          <input type="text" className="form-control" defaultValue={this.props.config.sms_source} id="sms_source" ref="sms_source" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="sms_username">SMS Broadcast Username (optional)</label>
+          <input type="text" className="form-control" defaultValue={this.props.config.sms_username} id="sms_username" ref="sms_username" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="sms_password">SMS Broadcast Password (optional)</label>
+          <input type="text" className="form-control" defaultValue={this.props.config.sms_password} id="sms_password" ref="sms_password" />
+        </div>
+        <div className="form-group">
           <label htmlFor="token">Token</label>
           <input type="text" className="form-control" defaultValue={this.props.config.token} id="token" disabled="disabled"/>
         </div>
