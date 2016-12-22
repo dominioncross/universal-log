@@ -19,6 +19,14 @@ module UniversalLog
       end
       if @message.save
         Blare.post("/log/#{universal_scope.id.to_s}/new", {channel: current_channel, author: @message.author})
+        #send SMS, find subscribers to this channel
+        if !universal_log_config.sms_url.blank?
+          subscribers = UniversalLog::Subscriber.subscribed_to(current_channel).where(scope: universal_scope)
+          require 'universal/sms_broadcast'
+          subscribers.each do |subscriber|
+            SmsBroadcast.send(universal_log_config, subscriber.phone_number, "#{universal_user.name} posted in the ##{current_channel} channel. #{universal_log_config.url}/#{current_channel}", current_channel)
+          end
+        end
       end
       find_messages
       render json: messages_json

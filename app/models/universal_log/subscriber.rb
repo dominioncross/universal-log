@@ -8,7 +8,9 @@ module UniversalLog
     
     field :ph, as: :phone_number
     field :st, as: :subscribed_to_channels, type: Array, default: []
-   
+    
+    scope :subscribed_to, ->(channel){where(subscribed_to_channels: channel)}
+    
     if !Universal::Configuration.class_name_user.blank?
       belongs_to :user, class_name: Universal::Configuration.class_name_user, foreign_key: :user_id
     end
