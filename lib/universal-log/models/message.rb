@@ -49,7 +49,7 @@ module UniversalLog
             channel: self.channel,
             subject_name: self.subject_name,
             pinned: self.pinned,
-            created: self.created_at.strftime('%b %d, %Y - %-I:%M%p')
+            created: (self.created_at.nil? ? nil : self.created_at.strftime('%b %d, %Y - %-I:%M%p'))
           }
         end
         
@@ -59,7 +59,7 @@ module UniversalLog
               self.author = self.user.name
             end
             if !self.subject_id.blank? and !self.subject.nil?
-              self.subject_name = self.subject.chat_subject_name
+              self.subject_name = self.subject.log_subject_name
             end
           end
       end
