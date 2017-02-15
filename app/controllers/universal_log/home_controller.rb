@@ -4,7 +4,7 @@ module UniversalLog
   class HomeController < ApplicationController
     
     def index
-        
+      current_channel if !universal_user.nil? and universal_user.has?(:logbook, :create_channels)
     end
     
 

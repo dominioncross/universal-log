@@ -5,7 +5,8 @@ module UniversalLog::Concerns
       has_many :logs, as: :subject, class_name: 'UniversalLog::Message'
       
       def log!(scope, message, channel, user)
-        self.logs.create scope: scope, message: message, channel: channel, user: user
+        log = self.logs.create scope: scope, message: message, channel: channel, user: user
+        logger.debug log.errors.to_json
       end
       
     end

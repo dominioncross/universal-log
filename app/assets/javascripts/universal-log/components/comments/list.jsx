@@ -18,7 +18,7 @@ var Comments = React.createClass({
     this.init();
   },
   componentDidUpdate: function(){
-    if (this.state.pastProps != this.props && !this.state.loading){
+    if (this.state.pastProps != JSON.stringify(this.props) && !this.state.loading){
       this.init();
     }
   },
@@ -73,9 +73,10 @@ var Comments = React.createClass({
     }
   },
   loadComments: function(){
+    console.log('loadcomments')
     var _this=this;
     if (!this.state.loading){
-      this.setState({loading: true, pastProps: this.props});
+      this.setState({loading: true});
       $.ajax({
         method: 'GET',
         url: `/universal/comments`,
@@ -87,7 +88,12 @@ var Comments = React.createClass({
           hide_private_comments: this.props.hidePrivateComments
         },
         success: function(data){
-          _this.setState({comments: data, subject_id: _this.props.subject_id, loading: false});
+          _this.setState({
+            comments: data,
+            subject_id: _this.props.subject_id,
+            loading: false,
+            pastProps: JSON.stringify(_this.props),
+          });
         }
       });
     }
