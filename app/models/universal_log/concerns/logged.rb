@@ -4,6 +4,10 @@ module UniversalLog::Concerns
     included do
       has_many :logs, as: :subject, class_name: 'UniversalLog::Message'
       
+      def log!(scope, message, channel, user)
+        self.messages.create scope: scope, message: message, channel: channel, user: user
+      end
+      
     end
     
     module ClassMethods
