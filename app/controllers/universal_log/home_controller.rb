@@ -4,6 +4,7 @@ module UniversalLog
   class HomeController < ApplicationController
     
     def index
+      render(file: "#{Rails.root}/public/404.html", status: 404, layout: false) and return if universal_user.nil? #they must be signed in
       current_channel if !universal_user.nil? and universal_user.has?(:logbook, :create_channels, universal_scope)
     end
 
