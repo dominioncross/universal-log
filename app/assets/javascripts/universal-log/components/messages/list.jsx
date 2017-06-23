@@ -16,11 +16,14 @@ var MessageList = React.createClass({
     });
   },
   init: function(){
+    console.log('init');
     this.loadMessages();
   },
   componentDidMount: function(){
-    var faye = new Faye.Client(this.props.fayeServer);
-    faye.subscribe(`/log/${this.props.scopeId}/new`, this.receiveFaye);
+    if (this.props.fayeServer){
+      var faye = new Faye.Client(this.props.fayeServer + '/faye');
+      faye.subscribe(`/log/${this.props.scopeId}/new`, this.receiveFaye);
+    }
   },
   receiveFaye: function(e){
     if (e.channel==this.props.gs.channel){

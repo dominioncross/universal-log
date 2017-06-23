@@ -4,13 +4,12 @@
     %title Universal Log
     %meta{name: "viewport", content: "width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"}
     = stylesheet_link_tag    "universal-log/application", media: "all"
+    - if !UniversalLog::Configuration.faye_server.blank?
+      = javascript_include_tag "#{UniversalLog::Configuration.faye_server}/faye.js"
     = javascript_include_tag "universal-log/application"
     = csrf_meta_tags
     = javascript_include_tag "https://use.fontawesome.com/1718d2531c.js"
   %body
     = yield
-      
-  
-  = yield :javascript  
-  - if !UniversalLog::Configuration.faye_server.blank?
-    = javascript_include_tag "#{UniversalLog::Configuration.faye_server}.js"
+    
+  = yield :javascript
