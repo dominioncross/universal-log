@@ -16,7 +16,6 @@ var MessageList = React.createClass({
     });
   },
   init: function(){
-    console.log('init');
     this.loadMessages();
   },
   componentDidMount: function(){
