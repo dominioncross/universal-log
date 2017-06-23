@@ -9,12 +9,16 @@ module UniversalLog
     end
 
     def init
-      users = Universal::Configuration.class_name_user.classify.constantize.where('_ugf.lobgook.0' => {'$exists' => true})
+      if UniversalAccess::Configuration.scoped_user_groups
+        users = Universal::Configuration.class_name_user.classify.constantize.where("_ugf.lobgook.#{universal_scope.id.to_s}" => {'$ne' => nil})
+      else
+        users = Universal::Configuration.class_name_user.classify.constantize.where('_ugf.lobgook' => {'$ne' => nil})
+      end
       users = users.sort_by{|a| a.name}.map{|u| {name: u.name, 
           email: u.email, 
           first_name: u.name.split(' ')[0].titleize, 
           id: u.id.to_s, 
-          functions: (u.universal_user_group_functions.blank? ? [] : u.universal_user_group_functions['lobgook'])}}
+          functions: (u.universal_user_group_functions.blank? ? [] : (UniversalAccess::Configuration.scoped_user_groups ? u.universal_user_group_functions['logbook'][universal_scope.id.to_s] : u.universal_user_group_functions['logbook']))}}
       
       json = {config: universal_log_config, users: users, subscriber: current_subscriber.to_json}
 
@@ -22,7 +26,7 @@ module UniversalLog
         json.merge!({universal_user: {
           name: universal_user.name,
           email: universal_user.email,
-          functions: (universal_user.universal_user_group_functions.blank? ? [] : universal_user.universal_user_group_functions['logbook'])
+          functions: (universal_user.universal_user_group_functions.blank? ? [] : (UniversalAccess::Configuration.scoped_user_groups ? universal_user.universal_user_group_functions['logbook'][universal_scope.id.to_s] : universal_user.universal_user_group_functions['logbook']))
         }})
       end
       render json: json
