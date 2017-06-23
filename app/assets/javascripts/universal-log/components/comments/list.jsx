@@ -73,7 +73,6 @@ var Comments = React.createClass({
     }
   },
   loadComments: function(){
-    console.log('loadcomments')
     var _this=this;
     if (!this.state.loading){
       this.setState({loading: true});

@@ -101,10 +101,9 @@ var Message = React.createClass({
         type: 'DELETE',
         url: `/log/messages/${this.state.message.id}`,
         success: function(data){
-          console.log(data);
           _this.setState({message: null});
         }
-      })
+      });
     }else{
       return null;
     }
