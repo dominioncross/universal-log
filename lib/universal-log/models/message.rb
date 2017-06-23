@@ -36,6 +36,14 @@ module UniversalLog
           belongs_to :user, class_name: Universal::Configuration.class_name_user, foreign_key: :user_id
         end
         
+        def name
+          self.message
+        end
+        
+        def kind
+          nil
+        end
+        
         def pin!
           self.update(pinned: !self.pinned)
         end

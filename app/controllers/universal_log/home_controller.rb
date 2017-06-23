@@ -4,9 +4,8 @@ module UniversalLog
   class HomeController < ApplicationController
     
     def index
-      current_channel if !universal_user.nil? and universal_user.has?(:logbook, :create_channels)
+      current_channel if !universal_user.nil? and universal_user.has?(:logbook, :create_channels, universal_scope)
     end
-    
 
     def init
       users = Universal::Configuration.class_name_user.classify.constantize.where('_ugf.lobgook.0' => {'$exists' => true})
