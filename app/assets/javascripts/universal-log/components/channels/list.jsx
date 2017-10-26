@@ -1,7 +1,7 @@
 /*global React*/
 /*global $*/
 /*global _*/
-var ChannelList = React.createClass({
+var ChannelList = createReactClass({
   getInitialState: function(){
     return({
     });

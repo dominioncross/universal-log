@@ -1,5 +1,5 @@
 /*global React*/
-var Modal = React.createClass({
+var Modal = createReactClass({
   
   render: function(){
     

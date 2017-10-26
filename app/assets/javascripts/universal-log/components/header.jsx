@@ -1,6 +1,6 @@
 /*global React*/
 /*global ReactDOM*/
-var Header = React.createClass({
+var Header = createReactClass({
   getInitialState: function(){
     return({
     });

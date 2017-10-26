@@ -1,4 +1,4 @@
-var ConfigLogin = React.createClass({
+var ConfigLogin = createReactClass({
   getInitialState: function(){
     return({password: null})
   },

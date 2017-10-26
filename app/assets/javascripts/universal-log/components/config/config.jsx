@@ -1,7 +1,7 @@
 /*global React*/
 /*global ReactDOM*/
 /*global $*/
-var Config = React.createClass({
+var Config = createReactClass({
   
   getInitialState: function(){
     return(

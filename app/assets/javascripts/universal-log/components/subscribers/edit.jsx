@@ -1,7 +1,7 @@
 /*global React*/
 /*global ReactDOM*/
 /*global $*/
-var EditSubscriber = React.createClass({
+var EditSubscriber = createReactClass({
   getInitialState: function(){
     return({phone_number: '', pastProps: null, loading: false});
   },

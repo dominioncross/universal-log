@@ -3,7 +3,7 @@
 /*global Faye*/
 /*global $*/
 /*global _*/
-var MessageList = React.createClass({
+var MessageList = createReactClass({
   getInitialState: function(){
     return({
       fayeListener: null,

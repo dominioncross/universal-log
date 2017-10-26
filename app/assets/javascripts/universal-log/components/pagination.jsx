@@ -1,5 +1,5 @@
 /*global React*/
-var Pagination = React.createClass({
+var Pagination = createReactClass({
   render: function(){
     var description = null;
     if ((this.props.displayDescription == undefined || this.props.displayDescription) && this.props.pagination){

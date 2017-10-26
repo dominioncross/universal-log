@@ -1,6 +1,6 @@
 /*global React*/
 /*global $*/
-var Comments = React.createClass({
+var Comments = createReactClass({
   getInitialState: function(){
     return({
       subject_id: null,

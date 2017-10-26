@@ -1,7 +1,7 @@
 /*global React*/
 /*global ReactDOM*/
 /*global $*/
-var LogBook = React.createClass({
+var LogBook = createReactClass({
   
   getInitialState: function(){
     return({

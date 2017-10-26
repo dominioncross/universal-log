@@ -1,4 +1,4 @@
-var ConfigForm = React.createClass({
+var ConfigForm = createReactClass({
   getInitialState: function(){
     return({});
   },

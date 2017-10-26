@@ -1,7 +1,7 @@
 /*global React*/
 /*global ReactDOM*/
 /*global $*/
-var EditChannel = React.createClass({
+var EditChannel = createReactClass({
   getInitialState: function(){
     return({name: '', notes: '', pastProps: null, loading: false});
   },

@@ -2,7 +2,7 @@
 /*global Autolinker*/
 /*global $*/
 /*global can*/
-var Message = React.createClass({
+var Message = createReactClass({
   getInitialState: function(){
     return({message: null});
   },
