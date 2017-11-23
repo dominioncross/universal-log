@@ -56,8 +56,13 @@ var MessageList = createReactClass({
     if (this.state.messages.length>0){
       var h = [];
       var gs=this.props.gs;
+      var ph = this.props.new_placeholder;
       _.each(this.state.messages, function(message){
-        h.push(<Message message={message} insertMessage={this.insertMessage} gs={gs} key={message.id} />);
+        h.push(<Message message={message} 
+          insertMessage={this.insertMessage} 
+          gs={gs} 
+          key={message.id} 
+          new_placeholder={ph ? ph : 'New log...'} />);
       });
       return(<ul className="list-group" ref="messageList">{h}</ul>);
     }else{
@@ -81,7 +86,6 @@ var MessageList = createReactClass({
             pastProps: JSON.stringify(_this.props),
             pageNum: page
           });
-          /*_this.props.sgs('searching', false);*/
         }
       });
     }
@@ -93,7 +97,13 @@ var MessageList = createReactClass({
   messageForm: function(){
     return(<div>
       <form onSubmit={this._submitForm}>
-        <div className="form-group"><textarea onChange={this._changeMessage} className="form-control" ref="textarea" placeholder="New log..." style={{height: `${this.textAreaHeight()}px`}} /></div>
+        <div className="form-group">
+          <textarea onChange={this._changeMessage}
+            className="form-control"
+            ref="textarea"
+            placeholder={this.props.new_placeholder ? this.props.new_placeholder : 'New log...'}
+            style={{height: `${this.textAreaHeight()}px`}} />
+        </div>
         {this.submitButton()}
       </form>
     </div>);
@@ -129,7 +139,7 @@ var MessageList = createReactClass({
       if (newHeight>240){
         newHeight=240;
       }
-      return newHeight
+      return newHeight;
     }else{
       return 40;
     }
