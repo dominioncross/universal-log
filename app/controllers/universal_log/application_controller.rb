@@ -1,6 +1,6 @@
 module UniversalLog
   class ApplicationController < ::ApplicationController
-    helper Universal::Engine::ApplicationHelper
+    helper Universal::ApplicationHelper
     
     #need helper methods: universal_scope and universal_user
     helper_method :universal_crm_config, :current_subscriber
