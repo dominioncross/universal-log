@@ -6,19 +6,20 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'haml'
-gem 'mongoid', '~>4.0.0'
+gem 'mongoid'
 gem 'mongoid_search'
 gem 'react-rails'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
-gem 'kaminari', '0.16.1'
+gem 'kaminari'
 gem 'universal', github: 'dominioncross/universal'
-gem 'carrierwave', '0.10.0'
-gem 'carrierwave-mongoid', '0.1.0', require: 'carrierwave/mongoid'
+gem 'universal-access', github: 'dominioncross/universal-access'
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'rails_autolink'
 
 # Declare any dependencies that are still in development here instead of in
@@ -28,4 +29,3 @@ gem 'rails_autolink'
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-
