@@ -14,7 +14,7 @@ module UniversalLog
         include Universal::Concerns::Commentable
         include Universal::Concerns::Polymorphic #A model that this message is related to
         
-        store_in session: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_messages'
+        store_in database: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_messages'
     
         field :a, as: :author
         field :m, as: :message
