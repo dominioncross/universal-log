@@ -1,5 +1,13 @@
 GIT
-  remote: git://github.com/dominioncross/universal-access.git
+  remote: https://github.com/dominioncross/universal
+  revision: f89b1a5e072a308832024b240afbefb2dcb5b073
+  specs:
+    universal (0.0.5)
+      mongoid
+      rails
+
+GIT
+  remote: https://github.com/dominioncross/universal-access
   revision: c9bee4afd9c2cb64654b17b36f345c9954372932
   specs:
     universal-access (0.0.1)
@@ -7,14 +15,6 @@ GIT
       mongoid
       rails
       universal
-
-GIT
-  remote: git://github.com/dominioncross/universal.git
-  revision: f89b1a5e072a308832024b240afbefb2dcb5b073
-  specs:
-    universal (0.0.5)
-      mongoid
-      rails
 
 PATH
   remote: .
