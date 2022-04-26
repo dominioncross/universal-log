@@ -5,8 +5,13 @@ source 'https://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
+gem 'rails', '4.2.11.3'
+gem 'mongo', '2.17.1'
+gem 'mongoid', '5.4.1'
+gem 'mongoid_auto_increment'
+gem 'bson', '4.15.0'
+
 gem 'haml'
-gem 'mongoid'
 gem 'mongoid_search'
 gem 'react-rails'
 gem 'sass-rails'
