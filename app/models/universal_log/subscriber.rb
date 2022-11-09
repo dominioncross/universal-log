@@ -4,7 +4,7 @@ module UniversalLog
     include Universal::Concerns::Scoped
     include Universal::Concerns::Tokened
     
-    store_in database: UniversalLog::Configuration.mongoid_session_name, collection: 'log_subscribers'
+    store_in collection: 'log_subscribers'
     
     field :ph, as: :phone_number
     field :st, as: :subscribed_to_channels, type: Array, default: []

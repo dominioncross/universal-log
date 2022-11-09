@@ -11,7 +11,7 @@ module UniversalLog
     include Universal::Concerns::Tokened
     
     
-    store_in database: UniversalLog::Configuration.mongoid_session_name, collection: 'chat_channels'
+    store_in collection: 'chat_channels'
 
     field :n, as: :name
     field :no, as: :notes

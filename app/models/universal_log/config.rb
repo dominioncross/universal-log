@@ -4,7 +4,7 @@ module UniversalLog
     include Universal::Concerns::Scoped
     include Universal::Concerns::Tokened
     
-    store_in database: UniversalLog::Configuration.mongoid_session_name, collection: 'log_configs'
+    store_in collection: 'log_configs'
 
     field :system_name
     field :url
