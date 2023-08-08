@@ -4,7 +4,6 @@ module UniversalLog
       extend ActiveSupport::Concern
 
       included do
-            
         include Mongoid::Document
         include Mongoid::Timestamps::Created
         include Mongoid::Search
@@ -20,7 +19,7 @@ module UniversalLog
         field :m, as: :message
         field :sn, as: :subject_name
         field :cn, as: :channel
-        field :p, as: :pinned, type: Boolean, default: false
+        field :p, as: :pinned, type: ::Mongoid::Boolean, default: false
         
         statuses %w(active closed deleted), default: :active
         

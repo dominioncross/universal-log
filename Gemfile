@@ -26,8 +26,8 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'rails_autolink'
 
-gem 'universal', git: 'https://github.com/dominioncross/universal', branch: 'rails5'
-gem 'universal-access', git: 'https://github.com/dominioncross/universal-access', branch: 'rails5'
+gem 'universal', git: 'https://github.com/dominioncross/universal', branch: 'rails7'
+gem 'universal-access', git: 'https://github.com/dominioncross/universal-access', branch: 'rails7'
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
