@@ -5,9 +5,9 @@ source 'https://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'rails', '5.2.8'
+gem 'rails', '7.0.6'
 gem 'mongo', '2.17.1'
-gem 'mongoid', '7.0.5'
+gem 'mongoid', '7.5.1'
 gem 'mongoid_auto_increment', '0.1.5'
 gem 'bson', '4.15.0'
 gem 'mongoid_search'
@@ -26,12 +26,5 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'rails_autolink'
 
-gem 'universal', git: 'https://github.com/dominioncross/universal', branch: 'rails7'
-gem 'universal-access', git: 'https://github.com/dominioncross/universal-access', branch: 'rails7'
-# Declare any dependencies that are still in development here instead of in
-# your gemspec. These might include edge Rails or gems from your path or
-# Git. Remember to move these dependencies to your gemspec before releasing
-# your gem to rubygems.org.
-
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
+gem 'universal', git: 'https://github.com/dominioncross/universal', tag: '1.0.0'
+gem 'universal-access', git: 'https://github.com/dominioncross/universal-access', tag: '1.0.0'
