@@ -3,7 +3,7 @@ module UniversalLog
     helper Universal::ApplicationHelper
     
     #need helper methods: universal_scope and universal_user
-    helper_method :universal_crm_config, :current_subscriber
+    helper_method :current_subscriber
     
     def current_subscriber
       if universal_user and universal_scope

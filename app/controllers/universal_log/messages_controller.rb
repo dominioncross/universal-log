@@ -2,15 +2,15 @@ require_dependency "universal_log/application_controller"
 
 module UniversalLog
   class MessagesController < ApplicationController
-    
+
     def index
       find_messages
-      
+
       render json: messages_json
     end
-    
+
     def create
-      @message = UniversalLog::Message.new params[:message]
+      @message = UniversalLog::Message.new params[:message].to_unsafe_h
       @message.scope = universal_scope if !universal_scope.nil?
       @message.channel = current_channel
       if !universal_user.nil?
@@ -30,19 +30,19 @@ module UniversalLog
       find_messages
       render json: messages_json
     end
-    
+
     def destroy
       @message = UniversalLog::Message.find(params[:id])
       @message.deleted!
       render json: {}
     end
-    
+
     def pin
       @message = UniversalLog::Message.find(params[:id])
       @message.pin!
       render json: @message.to_json
     end
-    
+
     private
       def find_messages
         @messages = UniversalLog::Message.active
@@ -65,7 +65,7 @@ module UniversalLog
           @messages = @messages.where(channel: current_channel) if !current_channel.blank?
         end
       end
-    
+
       def messages_json
         per=10
         params[:page] = 1 if params[:page].blank?
@@ -80,6 +80,6 @@ module UniversalLog
           messages: @messages.map{|t| t.to_json}
         }
       end
-      
+
   end
 end
