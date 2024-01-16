@@ -13,7 +13,7 @@ gem 'bson', '4.15.0'
 gem 'mongoid_search'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_web_mongoid', git: 'https://github.com/dominioncross/delayed_job_web_mongoid'
-gem 'carrierwave', '2.1.0'
+gem 'carrierwave', '3.0.5'
 gem 'carrierwave-mongoid', '0.1.0', require: 'carrierwave/mongoid'
 
 gem 'haml'
