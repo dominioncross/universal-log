@@ -21,10 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid'
   s.add_dependency 'haml'
   s.add_dependency 'universal'
-  s.add_dependency 'universal-access'
   s.add_dependency 'react-rails'
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'carrierwave'
   s.add_dependency 'carrierwave-mongoid'
-  
 end

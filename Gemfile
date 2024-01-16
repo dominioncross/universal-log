@@ -26,5 +26,4 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'rails_autolink'
 
-gem 'universal', git: 'https://github.com/dominioncross/universal', tag: '1.0.0'
-gem 'universal-access', git: 'https://github.com/dominioncross/universal-access', tag: '1.0.0'
+gem 'universal', git: 'https://github.com/dominioncross/universal'
