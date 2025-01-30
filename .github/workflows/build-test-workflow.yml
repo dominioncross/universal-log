@@ -1,0 +1,55 @@
+name: build-test
+on:
+  workflow_call:
+    secrets:
+      github-token:
+        required: true
+    inputs:
+      runs-on:
+        description: "Operating System"
+        required: true
+        type: string
+      ruby-version:
+        description: "Ruby Version"
+        required: true
+        type: string
+      mongo-version:
+        description: "Mongodb Version"
+        required: true
+        type: string
+      experimental:
+        description: "Mongodb Version"
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  rspec:
+    runs-on: ${{ inputs.runs-on }}
+    continue-on-error: ${{ inputs.experimental }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+      env:
+        BUNDLE_GITHUB__COM: x-access-token:${{ secrets.github-token }}
+      with:
+        ruby-version: ${{ inputs.ruby-version }}
+        bundler-cache: true
+    - name: Start MongoDB v$${{ inputs.mongo-version }}
+      uses: supercharge/mongodb-github-action@1.2.0
+      with:
+        mongodb-version: ${{ inputs.mongo-version }}
+    - run: bundle exec rspec
+
+  lint:
+    runs-on: ${{ inputs.runs-on }}
+    continue-on-error: ${{ inputs.experimental }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+      env:
+        BUNDLE_GITHUB__COM: x-access-token:${{ secrets.github-token }}
+      with:
+        ruby-version: ${{ inputs.ruby-version }}
+        bundler-cache: true
+    - run: bundle exec rubocop

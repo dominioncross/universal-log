@@ -1,0 +1,16 @@
+development:
+  clients:
+    default:
+      database: universal_dev
+      hosts:
+        - <%= ENV.fetch('MONGODB_HOST','localhost') %>:27017
+  options:
+    raise_not_found_error: false
+test:
+  clients:
+    default:
+      database: universal_test
+      hosts:
+        - <%= ENV.fetch('MONGODB_HOST','localhost') %>:27017
+  options:
+    raise_not_found_error: false
