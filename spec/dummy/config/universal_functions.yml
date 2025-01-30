@@ -1,0 +1,147 @@
+agent:
+  price_books:
+    title: Price Books
+    description: Enable Price Book functionality
+  force_price_books:
+    title: Force Price Book Pricing
+    description: Force all items to use Price Book pricing, not just individual SKUs
+  sub_agents:
+    title: 'Sub Agents'
+    description: Utilise sub agents within the system
+  production:
+    title: Production
+    description: Has access to the production systems
+  hr:
+    title: HR
+    description: Access to HR Calendar
+  crm:
+    title: CRM
+  whats_happening:
+    title: "What's happening"
+  page_views:
+    title: "Forklift > Page Views"
+  sales:
+    title: Sales
+    description: Tarmac Sales systems
+  warehouse:
+    title: Warehouse
+    description:
+  wholesale:
+    title: Wholesale
+    description:
+  wholesale_helpdesk:
+    title: Wholesale Helpdesk
+  highstreet:
+    title: Highstreet eCommerce Platform
+    description:
+  highstreet_management:
+    title: Highstreet eCommerce Platform Management
+    description: Stores, Affiliates, Promos etc
+  highstreet_scan_package_dimensions:
+    title: Highstreet Scan Packaging Dimensions
+    description: Require package dimensions when scanning ecom orders
+  highstreet_warranties:
+  highstreet_reports:
+  settings:
+    title: Settings
+    description:
+  iifit:
+    title: II-Fit
+    description:
+  referrals:
+    title: Referrals
+    description:
+  wholesale_orders:
+    title: Wholesale Orders/Indents/Reports
+    description:
+  wholesale_quick_orders:
+    title: Wholesale Quick Order Screen
+    description: New Refill orders will go to a quick indents remaining screen first
+  wholesale_upcoming_shipment_dates:
+    title: Display Upcoming Shipment dates on Wholesale system
+    description: "When ticked, the wholesale system will display 'Upcoming Shipment' dates for each product on the order form"
+  return_authorisations:
+    title: Wholesale Return Authorisations (Credit notes)
+    description:
+  wholesale_order_templates:
+    title: Wholesale Templates/Stock
+    description:
+  wholesale_order_returns:
+    title: Wholesale Stock Returns
+    description:
+  wholesale_transfers:
+    title: Wholesale Agent Transfers
+    description:
+  wholesale_news:
+    title: Wholesale News
+    description:
+  new_items:
+    title: Add new items
+    description: Allow new items to be added
+  pack_builder:
+    title: Pack Builder
+    description: All use of the pack builder to build bulk pack orders
+  email_weekly_stock_summary:
+    title: Email Weekly Stock Summary
+  air_freight:
+    title: Air Freight orders
+  place_freight:
+    title: Place Freight
+    description: Allow places to enter their own freight options
+
+account:
+  wholesale_orders:
+    title: Wholesale OrderDC System
+    description: Use Wholesale System
+  demo_wholesale_system:
+    title: Demo Wholesale System
+    description: Limit Wholesale system to Demo-only functions
+  attributable_wholesale_orders:
+    title: Attribute Wholesale Orders to other places
+    description: Used only for Reps accounts to allow reps to place an order and attribute it to a store/podiatry
+  wholesale_arrival_date_option:
+    title: Arrival Date option
+    description: Allow an arrival date to be chosen when placing wholesale orders
+  wholesale_indents:
+    title: Wholesale Indents
+    description: Use Wholesale Indents System
+  wholesale_training:
+    title: Wholesale Training
+    description: Link to product training pages
+  marketing_fund:
+    title: Marketing Fund
+    description: Allow the account to have access to a Marketing Fund
+  templates:
+    title: Order Templates
+    description: Allow the account to use the order template/stock count feature
+  refill_penalty:
+    title: Refill Penalty
+    description: Charge the refill penalty if the store has ordered over their indent qty
+  refill_penalty_2022:
+    title: Refill Penalty (2022)
+    description: Charge the refill penalty only if the store has ordered less than 70% of their previous year taken, or less than 6 pairs per item
+  small_delivery_penalty:
+    title: Small Delivery Penalty
+    description: Charge a penalty if the order is below the threshold (set for the agent)
+  reports:
+    title: Reports
+    description: The account has access to the reporting system
+  erply:
+    title: ERPLY
+    description: This accounts uses ERPLY POS
+  stock_returns:
+    title: Stock Returns
+    description: Access to Stock Returns/Stock Swap
+  credit_notes:
+    title: Credit Notes - Deprecated
+    description: Access to Credit Notes / RA's
+  return_authorisations:
+    title: Return Authorisations (Credit Notes)
+    description: Access to Credit Notes / RA's
+  warranties:
+    title: Warranty
+    description: Access to Warranty Requests
+  airbag_all_orders:
+    title: Force all orders to be airbagged
+  wholesale_pickup_option:
+    title: Ability to choose Pickup as a delivery option

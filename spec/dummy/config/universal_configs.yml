@@ -1,0 +1,369 @@
+agent:
+  unit_of_measure:
+    type: List
+    list_options: ['Metric', 'Imperial']
+  square_access_token:
+    type: String
+  square_api_version:
+    type: String
+  square_pos_api_version:
+    type: String
+  square_client_app_id:
+    type: String
+  square_location_id:
+    type: String
+  square_signature_key:
+    type: String
+  sms_originator:
+    type: String
+  sms_central_username:
+    type: String
+  sms_central_password:
+    type: String
+  sms_broadcast_username:
+    type: String
+  sms_broadcast_password:
+    type: String
+  international_phone_code:
+    type: String
+  wholesale_tax_name:
+    type: String
+  wholesale_tax_rate:
+    type: String
+  min_total_indent_pairs_per_month:
+    type: String
+  min_indent_pairs_per_style:
+    type: String
+  warehouse_management_system_url:
+    type: String
+  warehouse_management_system_api_url:
+    type: String
+  wmds_platform_id:
+    type: String
+  wmds_shipment_picking_bay_name:
+    type: String
+  wmds_shipment_receiving_bay_name:
+    type: String
+  zippay_api_url:
+    type: String
+  zippay_api_key:
+    type: String
+  zippay_public_key:
+    type: String
+  stripe_publishable_key:
+    type: String
+  stripe_secret_key:
+    type: String
+  paypal_email:
+    type: String
+  paypal_secret:
+    type: String
+  paypal_cert_id:
+    title: 'Paypal Cert ID'
+    type: String
+  paypal_app_cert_pem:
+    type: Text
+  paypal_app_key_pem:
+    type: Text
+  wholesale_olark_chart_id:
+    type: String
+  wholesale_order_footer:
+    description: Appears at the footer of the ordersdc.com ordering system
+    type: Text
+  wholesale_comms_bcc_addresses:
+    description: All Comms emails will be BCC'd to these addresses (separate with a comma)
+    type: String
+  highstreet_paypal_payment_url:
+    description: Substitute payment reference/id with {PAYMENT_ID}
+    type: String
+  highstreet_credit_card_payment_url:
+    description: Substitute payment reference/id with {PAYMENT_ID}
+    type: String
+  retail_express_integration:
+    description: Enable/disable REX Integration
+    type: Boolean
+  spsc_integration:
+    description: Enable/disable SPSC Integration
+    type: Boolean
+  sales_email_bcc_address:
+    type: String
+    description: Email addresses to receive sales emails (separate with a comma)
+  hr_email_address:
+    type: String
+    description: Email addresses to receive HR emails (separate with a comma)
+  ra_email_address:
+    type: String
+    description: addresses to receive RA emails (separate with a comma)
+  incoming_shipment_email_recipients:
+    type: String
+  missing_stock_summary_recipients:
+    type: String
+  daily_wholesale_summary_recipients:
+    type: String
+  weekly_wholesale_summary_recipients:
+    type: String
+  weekly_ecom_orders_recipients:
+    type: String
+  daily_itinerary_recipients:
+    type: String
+  daily_hr_events_recipients:
+    type: String
+  orders_onboard_email_recipients:
+    type: String
+  wiki_paths:
+    description: Separate with a line break. Each path will be linked on the home menu.
+    type: Text
+  xero_sales_account_code:
+    type: String
+  xero_other_revenue_account_code:
+    type: String
+  xero_tax_code:
+    type: String
+  xero_no_tax_code:
+    type: String
+  training_site_url:
+    type: String
+
+brand:
+  sizes:
+    title: Sizes title
+    description: Eg US/UK/Euro
+    type: String
+  converted_sizes:
+    title: Converted Sizes title
+    description: Eg US/UK/Euro
+    type: String
+
+place:
+  school:
+    num_students:
+      title: Number of Students
+      type: String
+    opening_hours:
+      title: Opening Hours
+      type: Text
+    year_levels:
+      title: Year Levels
+      type: String
+    private_public:
+      title: Private/Public
+      type: List
+      list_options: ['Private', 'Public']
+    school_shoes:
+      title: 'School Shoes'
+      type: List
+      list_options: ['Black Formal', 'Brown Formal', 'Black XT', '100% White XT', '80% White XT']
+    sport_shoes:
+      title: 'Sport Shoes'
+      type: List
+      list_options: ['Black XT', '100% White XT', '80% White XT', 'Any']
+    black_brown:
+      title: Black/Brown
+      type: List
+      list_options: ['Black', 'Brown']
+    individual_brochure:
+      title: Customised Brochure
+      type: List
+      list_options: ['Yes', 'No']
+    taf_rebate:
+      title: TAF Rebate
+      type: List
+      list_options: ['Yes', 'No']
+
+  store:
+    hide_public_profile:
+      title: Hide public profile
+      type: Boolean
+    opening_hours:
+      title: Opening Hours
+      type: Text
+    freight:
+      title: Freight
+      type: List
+      list_options: ['Direct', 'TOLL', 'Fastway', 'Star Track', 'Other']
+    freight_id:
+      title: Freight ID
+      type: String
+    delivery_days_road:
+      title: Road delivery time (days)
+      type: List
+      list_options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    delivery_days_air:
+      title: Air delivery time (days)
+      type: List
+      list_options: ['1', '2', '3']
+    delivery_include_weekends:
+      title: Include weekends in delivery time
+      type: Boolean
+    order_note:
+      title: Order Notes
+      type: Text
+    bill_to_address:
+      title: Bill To Address
+      type: Text
+    affiliate_referrals:
+      title: Use Affiliate Referrals System
+      type: Boolean
+    fitup_affiliation:
+      title: Use Fitup Affiliation System
+      type: Boolean
+    location:
+      title: Metro/Regional
+      type: List
+      list_options: ['Metro', 'Regional']
+    grade:
+      title: Grade
+      type: List
+      list_options: ['A', 'B', 'C', 'D', 'E', 'F']
+    bep:
+      title: B.E.P
+      type: List
+      list_options: ['Green', 'Orange', 'Red']
+    erply_warehouse_id:
+      title: ERPLY Warehouse ID
+      type: String
+    backup_erply_warehouse_id:
+      title: ERPLY Warehouse ID (Backup)
+      type: String
+    retail_express_outlet_id:
+      title: Retail Express Outlet ID
+      type: String
+    order_emails_cc:
+      title: CC Order Invoice emails to this address
+      type: String
+
+  podiatrist:
+    type:
+      title: Type
+      type: List
+      list_options: ['Store', 'Stand', 'Clinic']
+    use_referral_system:
+      title: Use Referral System
+      type: Boolean
+    opening_hours:
+      title: Opening Hours
+      type: Text #textarea
+    content:
+      title: Content
+      type: Text
+    hide_public_profile:
+      title: Hide public profile
+      type: Boolean
+    freight:
+      title: Freight
+      type: List
+      list_options: ['Direct', 'TOLL', 'Fastway', 'Star Track', 'Other']
+    freight_id:
+      title: Freight ID
+      type: String
+
+  physio:
+    hide_public_profile:
+      title: Hide public profile
+      type: Boolean
+    freight:
+      title: Freight
+      type: List
+      list_options: ['Direct', 'TOLL', 'Fastway', 'Star Track', 'Other']
+    freight_id:
+      title: Freight ID
+      type: String
+
+  medical:
+    hide_public_profile:
+      title: Hide public profile
+      type: Boolean
+    use_referral_system:
+      title: Use Referral System
+      type: Boolean
+
+user:
+  home_city:
+    title: Home City
+    type: String
+  email_signature:
+    title: Email Signature
+    type: Text
+
+account:
+  export_type:
+    title: Invoice Data Export Type
+    type: List
+    list_options: ['MYOB']
+  allow_airbag_orders:
+    title: Allow Airbag orders
+    description: If ticked, the customer will be able to select Airbag as an option.  (Airbag pricing is available under Agent settings)
+    type: Boolean
+  order_notify_email_address:
+    title: Wholesale order email
+    description: Email address to receive wholesale order notifications (Can be overridden by sales region notifiation email)
+    type: String
+  catalogue_search_tags:
+    description: Tags that appear in the catalogue search index. (Each tag on a new line)
+    type: Text
+
+sales_region:
+  order_notify_email_address:
+    title: Wholesale order email
+    description: Email address to receive wholesale order notifications (overrides account email)
+    type: String
+
+fitup:
+  pdf_template:
+    title: PDF Template
+    type: List
+    list_options: ['school', 'safety']
+  include_employee_no:
+    title: Ask for customer number
+    type: Boolean
+  include_email:
+    title: Ask for customer email
+    type: Boolean
+  attributed_place:
+    title: Attributed place
+    description: Allow rep to choose a place to attribute the fitup to
+    type: Boolean
+  attributed_place_wholesale_orders:
+    title: Allow Wholesale Orders to be placed for attributed places. Private Sale RRP prices MUST be entered
+    type: Boolean
+  attributed_place_wholesale_order_discount:
+    title: Percentage discount off RRP for attributed place wholesale orders
+    type: List
+    list_options: [0, ['100%',100], ['75%',75], ['50%',50], ['40%',40], ['30%',30], ['20%',20], ['10%',10], ['5%',5]]
+  wholesale_order_po:
+    title: Wholesale Purchase Order Number
+    description: All wholesale orders will be marked with this Purchase Order number
+    type: String
+
+  ecom_orders:
+    title: eCom order functions
+    type: Boolean
+  ecom_discount_fixed:
+    title: eCom fixed price discount ($)
+    type: String
+  ecom_dcross_commission:
+    title: Dominion Cross Commission for eCom orders
+    type: List
+    list_options: [0, ['5%',5], ['10%',10], ['15%',15], ['20%',20], ['25%',25]]
+  ecom_non_account_affiliate_commission:
+    title: eCom Non Account Affiliates Commission
+    type: List
+    list_options: [0, ['5%',5], ['10%',10], ['15%',15], ['20%',20], ['25%',25]]
+  email_header:
+    title: Customer Email Header
+    type: Text
+  email_footer:
+    title: Customer Email Footer
+    type: Text
+  summary_email_header:
+    title: Summary Email Header
+    type: Text
+
+
+item:
+  min_stock_qty:
+    title: Minimum Stock Qty
+    type: String
+  max_order_qty:
+    title: Maximum Order Qty
+    type: String
