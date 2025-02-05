@@ -20,7 +20,7 @@ require 'carrierwave'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require 'universal_log'
+require 'universal-log'
 
 module Dummy
   class Application < Rails::Application
