@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/dominioncross/universal
-  revision: 79500e2ccf783d9cd58336d14237b2494724f237
-  branch: qa/2.0.0
+  revision: 9d45ee860ad3948248f73e5c0cb9e8803a2ee956
+  tag: 2.0.0
   specs:
     universal (2.0.0)
+      geocoder
       mongoid
       rails (>= 6.1.7.10, < 7.1)
 
@@ -121,6 +122,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.2)
     database_cleaner (1.7.0)
     date (3.4.1)
     diff-lcs (1.5.1)
@@ -138,6 +140,9 @@ GEM
     fast-stemmer (1.0.2)
     ffi (1.17.1)
     formatador (1.1.0)
+    geocoder (1.8.5)
+      base64 (>= 0.1.0)
+      csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     guard (2.19.1)
