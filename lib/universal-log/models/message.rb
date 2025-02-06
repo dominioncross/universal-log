@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UniversalLog
   module Models
     module Message
@@ -11,64 +13,65 @@ module UniversalLog
         include Universal::Concerns::Taggable
         include Universal::Concerns::Scoped
         include Universal::Concerns::Commentable
-        include Universal::Concerns::Polymorphic #A model that this message is related to
-        
+        include Universal::Concerns::Polymorphic # A model that this message is related to
+
         store_in collection: 'chat_messages'
-    
+
         field :a, as: :author
         field :m, as: :message
         field :sn, as: :subject_name
         field :cn, as: :channel
         field :p, as: :pinned, type: ::Mongoid::Boolean, default: false
-        
-        statuses %w(active closed deleted), default: :active
-        
+
+        statuses %w[active closed deleted], default: :active
+
         validates :scope, :channel, :message, presence: true
-    
-        scope :for_channel, ->(channel){where(channel: channel)}
-        scope :pinned, ->(){where(pinned: true)}
-        default_scope ->(){order_by(pinned: :desc, created_at: :desc)}
-        
+
+        scope :for_channel, ->(channel) { where(channel: channel) }
+        scope :pinned, -> { where(pinned: true) }
+        default_scope -> { order_by(pinned: :desc, created_at: :desc) }
+
         before_save :update_relations
-        
-        if !Universal::Configuration.class_name_user.blank?
+
+        unless Universal::Configuration.class_name_user.blank?
           belongs_to :user, class_name: Universal::Configuration.class_name_user, foreign_key: :user_id
         end
-        
+
         def name
-          self.message
+          message
         end
-        
+
         def kind
           nil
         end
-        
+
         def pin!
-          self.update(pinned: !self.pinned)
+          update(pinned: !pinned)
         end
-        
-        def to_json
+
+        def to_json(*_args)
           {
-            id: self.id.to_s,
-            author: self.author,
-            message: self.message,
-            status: self.status,
+            id: id.to_s,
+            author: author,
+            message: message,
+            status: status,
             channel: self.channel,
-            subject_name: self.subject_name,
-            pinned: self.pinned,
-            created: (self.created_at.nil? ? nil : self.created_at.strftime('%b %d, %Y - %-I:%M%p'))
+            subject_name: subject_name,
+            pinned: pinned,
+            created: created_at&.strftime('%b %d, %Y - %-I:%M%p')
           }
         end
-        
+
         private
-          def update_relations
-            if self.author.blank? and !Universal::Configuration.class_name_user.blank? and !self.user_id.blank? and !self.user.nil?
-              self.author = self.user.name
-            end
-            if !self.subject_id.blank? and !self.subject.nil?
-              self.subject_name = self.subject.log_subject_name
-            end
+
+        def update_relations
+          if author.blank? && !Universal::Configuration.class_name_user.blank? && !user_id.blank? && !user.nil?
+            self.author = user.name
           end
+          return unless !subject_id.blank? && !subject.nil?
+
+          self.subject_name = subject.log_subject_name
+        end
       end
     end
   end
